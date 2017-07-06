@@ -60,11 +60,18 @@ function blinkUp (environment) { // eslint-disable-line no-unused-vars
   if (environment === 'disconnect') {
     disconnectDevice();
   } else {
-      var apiKey = "ENTER API KEY HERE"
+      var apiKey;
+      $.ajax({
+	  type: "POST",
+	  url: "../key/",
+	  async: false,
+	  data: {'pass':'envairo'},
+	  success: function(response) { apiKey = response; }
+      });
       flash(apiKey, environment);
   }
 }
-
+//create lightbox that shows only troubleshotoign tips
 
 function troubleshoot() {
   var configuration = {
@@ -89,17 +96,50 @@ var text = "<div id='trouble'><h1>Troubleshooting Tips</h1></center><p><ul><li>T
   hideResult();
 }
 
+document.getElementById("rarrow").addEventListener('click',function(e){increment(1)});
+document.getElementById("larrow").addEventListener('click',function(e){increment(-1)});
+var step = 1;
+function increment(n){
+    step += n;
+    slidesup(step);
+}
 
+function slidesup(n){
+    var i;
+    var slides = document.getElementsByClassName("slides");
+    console.log(step)
+    if(n <= 1){
+	document.getElementById("larrow").style.display = 'none';
+    }else{
+	document.getElementById("larrow").style.display = 'block';
+    }
+    if(n >= slides.length){
+	document.getElementById("rarrow").style.display = 'none';
+    }else{
+	document.getElementById("rarrow").style.display = 'block';
+    }
+    n = n < 1?1:n;
+    n = n > slides.length?slides.length:n;
+    for (i = 0; i< slides.length; i++){
+	slides[i].style.display = "none";
+    };
+    slides[n - 1].style.display = "block";
+};
+
+slidesup(step);
 
 /**
 * Open the lightbox and show an error in the instruction line
 *
-* @param {string} errorMessage  A string containing the error to display
+* @param {string} errorMessage  A string coaining the error to display
 */
 
 
 
-
+function testpost(){
+    $.post('../key/',{},function(data){console.log(data)});
+}
+    
 
 function showError (errorMessage) {
   var configuration = {
