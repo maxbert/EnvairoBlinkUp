@@ -13,9 +13,10 @@
 .arrow{
     font-size: 300%;
     font-weight: 900;
+    cursor:pointer;
 }
 
-.arrow:hover{
+.arrow:active{
     background-color:#60627a ;
 }
 
@@ -154,7 +155,7 @@ header h1 {
 
 header img {
   margin: 0 auto;
-  max-width: 300px;
+  max-width: 150px;
   width: 100%;
 }
 header p {
