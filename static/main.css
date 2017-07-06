@@ -42,7 +42,7 @@ footer {
     left: 0;
     bottom: 0;
     margin-top: 40%;
-    height: 100px;
+    height: 50px;
     width: 100%;
     overflow:hidden;
 }
@@ -310,8 +310,8 @@ header h2 {
 
 .lightbox {
   display: none;
-  width: 300px;
-  max-width: 300px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   background-color: white;
   color: dimgray;
@@ -321,10 +321,10 @@ header h2 {
     color: #9FD4FB;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 100%) {
   .lightbox {
-    width: 260px;
-    max-width: 260px;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -337,8 +337,8 @@ header h2 {
 .canvas {
   border: 10px solid #4F6CAC;
   display: block;
-  height: 200px;
-  margin: 0 auto;
+  height: 100%;
+  margin: 0;
   width: 100%;
 }
 

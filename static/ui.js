@@ -516,18 +516,18 @@ function startCountdown (callback) {
   setInstruction('Press the device sensor against the screen within the blue box');
 
   // Begin countdown
-  var count = 10;
-  document.getElementById('countdown').innerHTML = '<p>' + count + '</p>';
-
-  countDownTimer = setInterval(function () {
+    var count = 10;
+    document.getElementById('countdown').innerHTML = '<p>' + count + '</p>';
+    countDownTimer = setInterval(function () {
     count--;
+      
+	if (count <= 0) {
+	  clearInterval(countDownTimer);
+	  document.getElementById('BU-canvas').style.display = 'block';
 
-    if (count <= 0) {
-      clearInterval(countDownTimer);
-      document.getElementById('BU-canvas').style.display = 'block';
-      document.getElementById('countdown').style.display = 'none';
-      document.getElementById('imp-credit').style.visibility = 'hidden';
-
+	  document.getElementById('countdown').style.display = 'none';
+	  document.getElementById('imp-credit').style.visibility = 'hidden';
+	  
       return callback();
     }
 
