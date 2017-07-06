@@ -516,7 +516,7 @@ function startCountdown (callback) {
   setInstruction('Press the device sensor against the screen within the blue box');
 
   // Begin countdown
-  var count = 20000;
+  var count = 10;
   document.getElementById('countdown').innerHTML = '<p>' + count + '</p>';
 
   countDownTimer = setInterval(function () {
