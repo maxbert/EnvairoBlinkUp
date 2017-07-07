@@ -3,7 +3,6 @@ Jinja2==2.8
 MarkupSafe==0.23
 Pillow==2.9.0
 PyJWT==1.0.0
-Twisted-Core==15.2.1
 Twisted-Web==15.2.1
 Werkzeug==0.11.11
 adium-theme-ubuntu==0.3.4
