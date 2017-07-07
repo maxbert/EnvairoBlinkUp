@@ -20,7 +20,6 @@ def key():
 
 @app.route("/login/", methods=["GET","POST"])
 def login():
-    print request.form
     if request.method == "GET":
         return render_template("login.html", alert = "")
     if request.form["enter"] == "Login":
