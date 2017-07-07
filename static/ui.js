@@ -211,7 +211,7 @@ function disconnectDevice () {
       }
     );
     });
-    setInstruction('Press the device sensor against the screen within the blue box');
+    setInstruction('Place the three dots on your Envairo Node within the target box. Keep your Envairo Node in place until the rapid flashigng stops.');
   }
 }
 
@@ -468,7 +468,7 @@ function configureLightbox (isDisconnectDevice) {
   document.getElementById('BU-canvas').style.display = 'none';
 
   if (isDisconnectDevice !== true) {
-    var incompleteNetworkConfigurationMessage = 'Please provide a complete network configuration';
+    var incompleteNetworkConfigurationMessage = 'Please return to step four and complete the network configuration entry';
 
     if (networkConfig.isComplete() === false) {
       console.log('BU: Incomplete network configuration was provided'); // eslint-disable-line no-console
