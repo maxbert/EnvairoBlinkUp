@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, url_for, session, redirect
 from utils import auth
-import hashlib, sqlite3
 app = Flask(__name__)
 app.secret_key="devtest"
 PASSWORD = "envairo"

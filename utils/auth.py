@@ -8,6 +8,6 @@ def checkLogin(username,password):
     dbUserPass = [['admin', 'd033e22ae348aeb5660fc2140aec35850c4da997']] #c.execute(query)
     for entry in dbUserPass:
         if (entry[0] == username):
-            if (entry[1] == hashedPass): return ""
+            if (entry[1] == password): return ""
             else: return "Incorrect Password"
     return "Incorrect Username"
