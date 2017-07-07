@@ -5,7 +5,7 @@ def checkLogin(username,password):
    # db = sqlite3.connect(db1)
    # c = db.cursor()
    # query = "SELECT * FROM users"
-    dbUserPass = [['admin', 'd033e22ae348aeb5660fc2140aec35850c4da997']] #c.execute(query)
+    dbUserPass = [['admin', 'admin']]#'d033e22ae348aeb5660fc2140aec35850c4da997']] #c.execute(query)
     for entry in dbUserPass:
         if (entry[0] == username):
             if (entry[1] == password): return ""
