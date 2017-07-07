@@ -112,14 +112,14 @@ function slidesup(n){
     var slides = document.getElementsByClassName("slides");
     console.log(step)
     if(n <= 1){
-	document.getElementById("larrow").style.display = 'none';
+	document.getElementById("larrow").style.opacity = '0';
     }else{
-	document.getElementById("larrow").style.display = 'block';
+	document.getElementById("larrow").style.opacity = '0';
     }
     if(n >= slides.length){
-	document.getElementById("rarrow").style.display = 'none';
+	document.getElementById("rarrow").style.opacity = '0';
     }else{
-	document.getElementById("rarrow").style.display = 'block';
+	document.getElementById("rarrow").style.opacity = '0';
     }
     n = n < 1?1:n;
     n = n > slides.length?slides.length:n;
