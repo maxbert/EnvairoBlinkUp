@@ -12,7 +12,7 @@ function isOnMobile () {
 * Setup UI elements
 */
 window.onload = (function () {
-    var height = document.documentElement.clientHeight
+    var height = document.documentElement.clientHeight * 0.7;
     document.getElementById("BU-canvas").style.height = height + "px";
 document.getElementById("countdown").style.height = height + "px";
   return function () {
