@@ -114,12 +114,12 @@ function slidesup(n){
     if(n <= 1){
 	document.getElementById("larrow").style.opacity = '0';
     }else{
-	document.getElementById("larrow").style.opacity = '0';
+	document.getElementById("larrow").style.opacity = '1';
     }
     if(n >= slides.length){
 	document.getElementById("rarrow").style.opacity = '0';
     }else{
-	document.getElementById("rarrow").style.opacity = '0';
+	document.getElementById("rarrow").style.opacity = '1';
     }
     n = n < 1?1:n;
     n = n > slides.length?slides.length:n;
