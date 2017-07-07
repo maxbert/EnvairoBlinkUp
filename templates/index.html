@@ -45,6 +45,8 @@
 	     <button  class="btn-danger btn-block" onclick="blinkUp('disconnect')">Reset Device</button>
 	   </div>
 	   <div class="slides" id="four">
+	     <h1> Step 4: </h1> <br>
+	     <p> Enter your network information below. Make sure you enter the SSID and password correctly.</p>
 	     <div id="form">
 	       <div class="row">
 		 <section class="primary-inputs">
@@ -63,44 +65,47 @@
 		   <br class="clear" />
 		 </section> <!-- end primary inputs -->
 	       </div>
-	       <div class="row">
-		 <section class="submission-inputs">
-		   <div class="col-md-6">
-		     <button  class="btn-info btn-block" onclick="blinkUp('production')">Begin Connection</button>
-		   </div>
-		   <p> </p>
-		   <div class="col-md-6">
-		 <button class="btn-success btn-block" onclick="troubleshoot()"> Troubleshooting </button>
-		  </div>
-	       </div>
-	       <br class="clear">
-	       </div>
+	     </div>
 	   </div>
-	 </div>
+	   <div class="slides" id="four">
+	     <h1> Step 5: </h1> <br>
+	     <p> Click Begin Connection and hold your device to the screen, making sure the three dots on the front of your Envairo Node are all within the target box. Do not move your Envairo Node away from the screen until the flashing is complete. </p>
+	     <div class="row">
+	       <section class="submission-inputs">
+		 <div class="col-md-6">
+		   <button  class="btn-info btn-block" onclick="blinkUp('production')">Begin Connection</button>
+		 </div>
+		 <p> </p>
+		 <div class="col-md-6">
+		   <button class="btn-success btn-block" onclick="troubleshoot()"> Troubleshooting </button>
+		 </div>
+	     </div>
+	     <br class="clear">
+	   </div>
        </center>
        </section> <!-- end submission-inputs -->
        <div class="col-md-1 col-xs-1 arrow" id="rarrow"><p> &#62   </p></div>
        </div>
-      <!-- end form -->
-      <div class="lightbox" id="lightbox-blinkUp">
-	<div>
-              <p id="lightbox-close">&#10005;</p>
-              <!-- Instructions on current step -->
-              <h3 id="current-instruction">Align device sensor to the screen</h3>
+       <!-- end form -->
+       <div class="lightbox" id="lightbox-blinkUp">
+	 <div>
+           <p id="lightbox-close">&#10005;</p>
+           <!-- Instructions on current step -->
+           <h3 id="current-instruction">Align device sensor to the screen</h3>
 	    </div>
-	    
-	    <div id="status">
+	 
+	 <div id="status">
               <center>
 		<img id="progress-img" src="https://electricimp.com/public/img/progress.gif"/>
 		<p id="result"></p>
               </center>
-	    </div>
-	    
-	    <div id="BU-progress">
-	    </div>
-	    
-	    <!-- For countdown -->
-	    <div id="countdown" class="canvas">
+	 </div>
+	 
+	 <div id="BU-progress">
+	 </div>
+	 
+	 <!-- For countdown -->
+	 <div id="countdown" class="canvas">
               <p></p>
 	    </div>
 	    

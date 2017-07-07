@@ -12,6 +12,8 @@ function isOnMobile () {
 * Setup UI elements
 */
 window.onload = (function () {
+    document.getElementById("BU-canvas").style.height = $(window).height() + "px";
+document.getElementById("countdown").style.height = $(window).height() + "px";
   return function () {
     // Setup the UI accordions
     var icons = {
