@@ -47,9 +47,6 @@ def my_expired_token_callback():
 @app.route("/home/", methods=["GET","POST"])
 @jwt_required
 def home():
-    current_user = get_jwt_identity()
-    print current_user
-
     return render_template("index.html")
 
 @app.route("/key/", methods=["POST"])
