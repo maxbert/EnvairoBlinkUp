@@ -195,7 +195,7 @@ function disconnectDevice () {
   document.body.addEventListener('touchmove', captureEvent);
   if (configureLightbox(true)) {
     startCountdown(function () {
-      setInstruction('Hold the device in place while the rapid flashing of the connection process occurs.');
+      setInstruction('Do not move the device');
 
       // Perform the BlinkUp (flashing)
       BU.startDisconnectFlash({},
@@ -212,7 +212,7 @@ function disconnectDevice () {
       }
     );
     });
-      setInstruction('Place the opening on the front of your node within the target box. Do not move your Envairo node until flashing is complete')
+      setInstruction('Place the opening on the front of your node within the target box')
   }
 }
 
@@ -284,7 +284,7 @@ function flashWithConfig (configId) {
     var options = {
     };
 
-    setInstruction('Do not move the device while the connection is in process. Once the flashing stops, you may move your device away from the screen');
+    setInstruction('Place the opening on the front of your Envairo node within the target box');
   // BU.pollTimeout = 60;
   // Perform the BlinkUp (flashing)
     BU.startNetworkFlash(configId, networkConfig, options,
