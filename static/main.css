@@ -359,6 +359,7 @@ header h2 {
     cursor: default;
     vertical-align: middle;
     max-width:100%;
+    min-width:100%;
     max-height:100%;
     width:auto;
 }
@@ -426,6 +427,7 @@ header h2 {
   position: relative;
   width: 90%;
   min-height: 62px;
+  min-width:100%;
   padding-top: 20px;
 }
 
