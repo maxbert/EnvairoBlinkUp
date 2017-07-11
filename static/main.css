@@ -16,6 +16,11 @@
     cursor:pointer;
 }
 
+button{
+    font-size: 200%;
+    font-weight: 600;
+}
+
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

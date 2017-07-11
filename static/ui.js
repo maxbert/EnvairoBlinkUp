@@ -293,7 +293,7 @@ function flashWithConfig (configId) {
       hideFlashingElements();
 
       // Show status of device polling
-      setInstruction('Gathering device data (' + BU.pollTimeout + 's max)');
+      setInstruction('Gathering device data');
       document.getElementById('status').style.display = 'block';
       showPolling();
 
@@ -324,23 +324,9 @@ function getDeviceStatus (configId) {
       setInstruction('Device did not connect');
       showResult(err, false);
     } else if (deviceInfo) {
-      setInstruction('Device is connected');
-      if (deviceInfo.agentURL === '' || deviceInfo.agentURL === 'https://agent.electricimp.com/NoModelSetForDevice') {
-        showResult('<h4>Agent URL</h4><span>Generate unique Agent URL using Electric Imp IDE to access this agent remotely. In IDE, assign this device to a model to get an Agent URL.</span><h4>Device ID</h4>' + deviceInfo.deviceId, true);
-      } else {
-        var splitArr = deviceInfo.agentURL.split('/');
-        var lastElement = splitArr.pop();
-
-        if (lastElement === '') {
-          lastElement = splitArr.pop();
-        }
-
-        var frontURL = splitArr.join('/');
-
-        lastElement = lastElement || '';
-        frontURL = frontURL || '';
-
-        showResult("<h4>Agent URL</h4><a class='agentURL' href='" + deviceInfo.agentURL + "'><p>" + frontURL + '</p><p>' + lastElement + '</p></a><h4>Device ID</h4>' + deviceInfo.deviceId, true);
+	setInstruction('Device is connected');
+	
+        showResult("<h2> Successfully connected Envairo Node </h2>", true);
       }
     }
   });
