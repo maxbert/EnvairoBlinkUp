@@ -327,9 +327,9 @@ function getDeviceStatus (configId) {
 	setInstruction('Device is connected');
 	
         showResult("<h2> Successfully connected Envairo Node </h2>", true);
-      }
     }
-  });
+  }
+		      );
 }
 
 /*
