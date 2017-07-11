@@ -10,10 +10,15 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+::-webkit-scrollbar { 
+    display: block; 
+}
+
 .arrow{
     font-size: 300%;
     font-weight: 900;
     cursor:pointer;
+    
 }
 
 .arrow:active{
@@ -137,12 +142,13 @@ textarea {
    ========================================================================== */
 
 body {
-  margin: 0 auto;
-  margin-right:2;
-  max-width: 600px;
-  width: 100%;
-  background-color: #18192B;
-  color: #9FD4FB;
+    overflow:hidden;
+    margin: 0 auto;
+    margin-right:2px auto;
+    max-width:600px;
+    width: 100%;
+    background-color: #18192B;
+    color: #9FD4FB;
 }
 
 /* Header Styles */
@@ -337,9 +343,9 @@ header h2 {
 .featherlight {
     cursor: default;
     vertical-align: middle;
-    max-width:100%;
+    max-width:600px;
     max-height:100%;
-    width:auto;
+    width: 100%;
 }
 
 .canvas {
@@ -403,6 +409,7 @@ header h2 {
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  max-width: 600px;
   width: 90%;
   min-height: 62px;
   padding-top: 20px;

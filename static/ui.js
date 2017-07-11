@@ -211,7 +211,7 @@ function disconnectDevice () {
       }
     );
     });
-    setInstruction('Place the three dots on your Envairo Node within the target box. Keep your Envairo Node in place until the rapid flashigng stops.');
+      setInstruction('Place the opening on the front of your node within the target box')
   }
 }
 
@@ -529,7 +529,7 @@ function startCountdown (callback) {
 	  document.getElementById('BU-canvas').style.display = 'block';
 
 	  document.getElementById('countdown').style.display = 'none';
-	  document.getElementById('imp-credit').style.visibility = 'hidden';
+	  document.getElementById('imp-credit').style.display = 'block';
 	  
       return callback();
     }
