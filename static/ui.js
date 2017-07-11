@@ -14,7 +14,8 @@ function isOnMobile () {
 window.onload = (function () {
     var height = document.documentElement.clientHeight * 0.7;
     document.getElementById("BU-canvas").style.height = height + "px";
-document.getElementById("countdown").style.height = height + "px";
+    document.getElementById("countdown").style.height = height + "px";
+    
   return function () {
     // Setup the UI accordions
     var icons = {
@@ -56,7 +57,7 @@ document.getElementById("countdown").style.height = height + "px";
 * Start requesting a ConfigId (token, planId) from Electric Imp AI before beginning flashing
 *
 * @param {string} environment  Either 'production', or 'disconnect'
-*                       indicating type of BlinkUp to perform
+*                      indicating type of BlinkUp to perform
 *
 */
 function blinkUp (environment) { // eslint-disable-line no-unused-vars
@@ -194,7 +195,7 @@ function disconnectDevice () {
   document.body.addEventListener('touchmove', captureEvent);
   if (configureLightbox(true)) {
     startCountdown(function () {
-      setInstruction('Do not move the device');
+      setInstruction('Hold the device in place while the rapid flashing of the connection process occurs.');
 
       // Perform the BlinkUp (flashing)
       BU.startDisconnectFlash({},
@@ -211,7 +212,7 @@ function disconnectDevice () {
       }
     );
     });
-      setInstruction('Place the opening on the front of your node within the target box')
+      setInstruction('Place the opening on the front of your node within the target box. Do not move your Envairo node until flashing is complete')
   }
 }
 
@@ -283,7 +284,7 @@ function flashWithConfig (configId) {
     var options = {
     };
 
-    setInstruction('Do not move the device');
+    setInstruction('Do not move the device while the connection is in process. Once the flashing stops, you may move your device away from the screen');
   // BU.pollTimeout = 60;
   // Perform the BlinkUp (flashing)
     BU.startNetworkFlash(configId, networkConfig, options,
