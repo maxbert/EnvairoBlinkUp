@@ -233,10 +233,10 @@ header h2 {
 
 #form input {
     background-color: #C3E2F9;
-  border: none;
-  box-sizing: border-box;
-  font: bold 20px arial, sans-serif;
-  padding: 3px;
+    border: none;
+    box-sizing: border-box;
+    font: bold 20px arial, sans-serif;
+    padding: 3px;
 }
 
 #form input[type="text"],
@@ -251,6 +251,15 @@ header h2 {
   color: black;
   outline: none;
 }
+
+
+#password:focus {
+    border: solid 5px rgba(0, 0, 0, 0.1);
+    border-right: solid 5px transparent;
+    color: black;
+    outline: none;
+}
+
 
 /* Secondary inputs, static-config-inputs, proxy-config-inputs */
 

@@ -60,6 +60,23 @@ window.onload = (function () {
 *                      indicating type of BlinkUp to perform
 *
 */
+
+var showing = false;
+function showpass(){
+    if(showing){
+	$("#password").attr("type","password");
+	$("#showpassword").html('show');
+	showing = false;
+    }else{
+	$("#password").attr("type","text");
+	$("#showpassword").html('hide');
+	showing=true;
+    }
+}
+
+
+
+
 function blinkUp (environment) { // eslint-disable-line no-unused-vars
   if (environment === 'disconnect') {
     disconnectDevice();
@@ -69,8 +86,7 @@ function blinkUp (environment) { // eslint-disable-line no-unused-vars
 	  type: "POST",
 	  url: "../key/",
 	  async: false,
-	  data: {'pass':'envairo'},
-	  success: function(response) { apiKey = response; }
+	  success: function(response) { console.log(response); apiKey = response; }
       });
       flash(apiKey, environment);
   }
@@ -327,6 +343,7 @@ function getDeviceStatus (configId) {
 	setInstruction('Device is connected');
 	
         showResult("<h2> Successfully connected Envairo Node </h2>", true);
+	window.location.replace("http://envairo.com");
     }
   }
 		      );

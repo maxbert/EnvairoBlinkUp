@@ -27,10 +27,6 @@ app.config['SECRET_KEY']="devtest"
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 
 
-PASSWORD = "envairo"
-
-#jwt = JWT(app, authenticate, identity)
-
 jwt = JWTManager(app)
 
 
@@ -52,10 +48,7 @@ def home():
 @app.route("/key/", methods=["POST"])
 def key():
     print("acessing key")
-    if (request.form['pass'] == PASSWORD):
-        return "85bd4b7d7c285c02dbf7e4a501fe47cf"
-    else:
-        return "unauthorized"
+    return "a6089d2e93525a3a934a202d0ad9063b"
 
 
 @app.route("/auth", methods=["GET","POST"])
@@ -77,6 +70,7 @@ def login():
 @app.errorhandler(401)
 def page_not_found(e):
     return render_template('401.html'), 401
+
 
 
 if __name__ == "__main__":
