@@ -36,6 +36,10 @@ button{
     font-size:400%;
 }
 
+#larrow{
+    font-size:400%;
+}
+
 .arrow:active{
     background-color:#60627a ;
 }
