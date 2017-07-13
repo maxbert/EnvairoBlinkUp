@@ -163,11 +163,10 @@ textarea {
 body {
   margin: 0 auto;
   margin-right:auto;
-  max-width: 600px;
-  text-align:center;
   width: 100%;
   background-color: #18192B;
   color: #9FD4FB;
+  font: monserat sans-serif;
 }
 
 /* Header Styles */
@@ -487,9 +486,26 @@ ul {
   width: 100%;
 }
 
-ul li {
-  color: rgba(0, 0, 0, 0.5);
-  font: bold 20px arial, sans-serif;
+
+.sitelist{
+    font-size:300%;
+    font-wieght: 700;
+    font-decoration: underline;
+}
+
+.sitelist a{
+    background-color: #18192B;
+    color: #9FD4FB; 
+}
+
+.sitesbod:before{
+    background:url('/static/images/build.png');
+    background-size:contain;
+    display: block; content:""; position: absolute; z-index:-1;
+    top:0; left: 0; right: 0; height: 100%;
+    opacity:.15;
+    
+
 }
 
 /* ==========================================================================

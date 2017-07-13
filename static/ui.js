@@ -156,9 +156,6 @@ slidesup(step);
 
 
 
-function testpost(){
-    $.post('../key/',{},function(data){console.log(data)});
-}
     
 
 function showError (errorMessage) {
@@ -523,7 +520,7 @@ function startCountdown (callback) {
   setInstruction('Press the device sensor against the screen within the blue box');
 
   // Begin countdown
-    var count = 10;
+    var count = 5;
     document.getElementById('countdown').innerHTML = '<p>' + count + '</p>';
     countDownTimer = setInterval(function () {
     count--;

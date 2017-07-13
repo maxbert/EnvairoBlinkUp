@@ -39,10 +39,20 @@ def my_expired_token_callback():
     return render_template("login.html", alert="Session Expired")
 
 
-@app.route("/")
-@app.route("/home/", methods=["GET","POST"])
+@app.route("/sites/")
 @jwt_required
-def home():
+def sites():
+    return render_template("sites.html", sites=["11 East Madison","29 Norman Ave","1 World Trade Center", "2400 Pensylvania Ave", "274 Lafayette Ave"])
+
+@app.route("/zone/<sitename>")
+@jwt_required
+def zones(sitename):
+    return render_template("zones.html", sitename=sitename, zones=["conference room", "kitchen", "room 399b"])
+
+@app.route("/")
+@app.route("/configure/", methods=["GET","POST"])
+@jwt_required
+def configure():
     return render_template("index.html")
 
 @app.route("/key/", methods=["POST"])

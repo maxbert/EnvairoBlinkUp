@@ -14,7 +14,7 @@ function getToke(){
 	success: function(response) { token = response;}
     });
     if(token.login){
-	window.location.replace('../home/');
+	window.location.replace('../sites/');
     }else{
 	alert('username or passowrd incorrect');
     }
