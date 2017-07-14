@@ -21,4 +21,5 @@ function getToke(){
 }
 window.onload= function(){
     $('#zarrow').on('click',function(){window.location.replace('../sites')});
+        $('#darrow').on('click',function(){window.location.replace('../../../sites')});
 };

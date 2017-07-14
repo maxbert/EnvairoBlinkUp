@@ -498,9 +498,10 @@ ul {
     color: #9FD4FB; 
 }
 
-.sitesbod:before{
-    background:url('/static/images/build.png');
+.sitesbod{
+   
     background-size:contain;
+    background-color:red;
     display: block; content:""; position: absolute; z-index:-1;
     top:0; left: 0; right: 0; height: 100%;
     opacity:.25;

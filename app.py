@@ -39,6 +39,11 @@ def my_expired_token_callback():
     return render_template("login.html", alert="Session Expired")
 
 
+@app.route('/dashboard/<sitename>/<zone>/')
+@jwt_required
+def dashboard(sitename,zone):
+    return render_template("dashboard.html",sitename=sitename,zone=zone)
+
 @app.route("/sites/")
 @jwt_required
 def sites():
