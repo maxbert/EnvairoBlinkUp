@@ -49,7 +49,7 @@ def sites():
 def zones(sitename):
     return render_template("zones.html", sitename=sitename, zones=["conference room", "kitchen", "room 399b"])
 
-@app.route("/")
+
 @app.route("/configure/", methods=["GET","POST"])
 @jwt_required
 def configure():
@@ -72,7 +72,7 @@ def auth():
         return resp, 200
     else:
         return jsonify({'login': False})
-    
+@app.route("/")    
 @app.route("/login/", methods=["GET","POST"])
 def login():
     return render_template("login.html", alert = "")

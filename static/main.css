@@ -488,7 +488,7 @@ ul {
 
 
 .sitelist{
-    font-size:300%;
+    font-size:150%;
     font-wieght: 700;
     font-decoration: underline;
 }
@@ -503,7 +503,7 @@ ul {
     background-size:contain;
     display: block; content:""; position: absolute; z-index:-1;
     top:0; left: 0; right: 0; height: 100%;
-    opacity:.15;
+    opacity:.25;
     
 
 }
