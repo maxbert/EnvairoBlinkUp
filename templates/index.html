@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, user-scalable=no">
     <title>Envairo Set Up</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -8,48 +13,66 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>-->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+
     <script src="/static/AnimationFrame.min.js" type="text/javascript"></script>
     <script src="/static/blinkupSDK.min.js" type="text/javascript"></script>
     <script src="/static/featherlight.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/featherlight.min.css">
     <link rel="stylesheet" href="/static/main.css">
     <link rel="shortcut icon" href="/static/favicon.ico">
   </head>
   <body>
-    <div class="container-fluid" style="max-width:600px; width:100%;">
-      <div class="row">
-      <header>
-	<p><img id="logo" alt="Logo" src="/static/images/logo.png" height="100%" width="100%"/></p>
-	
-      </header>
+    
+         <nav class="navbar sticky-top navbar-toggleable-md navbar-inverse bg-faded" style="background-color:#18192B;">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="http://envairo.com"><img id="logo" alt="Logo" src="/static/images/logo.png" height="50%" width="50%"/></a>
+
+
+      
+      <div class=" collapse navbar-collapse justiy-content-end" id="navbarTogglerDemo02">
+	<ul class="navbar-nav mr-auto"></ul>
+	<ul class="nav navbar-nav justify-content-end">
+	  <li>
+	    
+	    <form class="form-inline" action="../sites/">
+	      <button class="btn btn-outline-primary" type="submit">Dashboard</button>
+	    </form>
+	  </li>
+	</ul>
+      </div>
+
+	 </nav>
+<div class="container-fluid" style="max-width:600px; width:100%;">
       <br class="space">
-       <div class="col-md-1 col-xs-1 arrow" id="larrow" style="font-size:400%; font-weight:900; cursor:pointer; padding:2px"><center><p class="noselect"> &#60 </p></center></div>
-       <center>
-	 <div class="col-md-10 col-xs-10">
-	   <div class="slides" id="one">
-	     <h1> Click the arrows to begin the Envairo Node setup process </h1> <br>
-	   </div>
-	   <div class="slides" id="one">
-	     <h1> Step 1: </h1> <br>
-	     <p> Turn up your phone screen or monitor brightness to its maximum </p>
-	   </div>
-	    <div class="slides" id="one">
-	     <h1> Step 2: </h1> <br>
-	     <p>Turn on device and check to see that your Envario Node signal LED is flashing rapidly. If it is not flashing, flip the power switch to the off position, wait 30 seconds and flip the switch back on</p>
-	   </div>
-	   <div class="slides" id="one">
-	     <h1> Step 3: </h1> <br>
-	     <p> Skip this step If your Envario Node is flashing <b style="color:orange;">amber</b>. Click the red button labeled  Reset Device and hold your device up to the screen, with the two front holes facing the target box.</p>
-	     <button  class="btn-danger btn-block" onclick="blinkUp('disconnect')">Reset Device</button>
-	   </div>
-	   <div class="slides" id="four">
-	     <h1> Step 4: </h1> <br>
-	     <p> Enter your network information below. Make sure you enter the SSID and password correctly.</p>
-	     <div id="form">
-	       <div class="row">
-		 <section class="primary-inputs">
+       <div class="row">
+      <div class="col-md-1 col-1" style=" font-weight:900; cursor:pointer; padding:2px"><center><p class="noselect arrow" id="larrow"> &#60 </p></center></div>
+	 <div class="col-md-10 col-10">
+	   <center>
+	     <div class="slides" id="one">
+	       <h1> Click the arrows to begin the Envairo Node setup process </h1> <br>
+	     </div>
+	     <div class="slides" id="one">
+	       <h1> Step 1: </h1> <br>
+	       <p> Turn up your phone screen or monitor brightness to its maximum </p>
+	     </div>
+	     <div class="slides" id="one">
+	       <h1> Step 2: </h1> <br>
+	       <p>Turn on device and check to see that your Envario Node signal LED is flashing rapidly. If it is not flashing, flip the power switch to the off position, wait 30 seconds and flip the switch back on</p>
+	     </div>
+	     <div class="slides" id="one">
+	       <h1> Step 3: </h1> <br>
+	       <p> Skip this step If your Envario Node is flashing <b style="color:orange;">amber</b>. Click the red button labeled  Reset Device and hold your device up to the screen, with the two front holes facing the target box.</p>
+	       <button  class="btn-danger btn-block" onclick="blinkUp('disconnect')">Reset Device</button>
+	     </div>
+	     <div class="slides" id="four">
+	       <h1> Step 4: </h1> <br>
+	       <p> Enter your network information below. Make sure you enter the SSID and password correctly.</p>
+	       <div id="form">
+		 <div class="row">
 		   <div class="col-md-6">
 		     <div class="field">
 		       <label for="ssid">Network Name</label>
@@ -70,15 +93,14 @@
 		     </div>
 		   </div>
 		   <br class="clear" />
-		 </section> <!-- end primary inputs -->
+		 </div>
 	       </div>
 	     </div>
-	   </div>
-	   <div class="slides" id="four">
-	     <h1> Step 5: </h1> <br>
-	     <p> Click Begin Connection and hold your device to the screen, making sure the three dots on the front of your Envairo Node are all within the target box. Do not move your Envairo Node away from the screen until the flashing is complete. </p>
-	     <div class="row">
-	       <section class="submission-inputs">
+	     <div class="slides" id="four">
+	       <h1> Step 5: </h1> <br>
+	       <p> Click Begin Connection and hold your device to the screen, making sure the three dots on the front of your Envairo Node are all within the target box. Do not move your Envairo Node away from the screen until the flashing is complete. </p>
+	       <div class="row">
+		 
 		 <div class="col-md-6">
 		   <button  class="btn-info btn-block" onclick="blinkUp('production')">Begin Connection</button>
 		 </div>
@@ -86,12 +108,13 @@
 		 <div class="col-md-6">
 		   <button class="btn-success btn-block" onclick="troubleshoot()"> Troubleshooting </button>
 		 </div>
+	       </div>
+	       <br class="clear">
 	     </div>
-	     <br class="clear">
-	   </div>
-       </center>
-       </section> <!-- end submission-inputs -->
-       <div class="col-md-1 col-xs-1 arrow" id="rarrow" style="font-size:400%; font-weight:900; cursor:pointer; padding:2px;"><center><p class="noselect">&#62  </p></center></div>
+	     
+
+	 </div>
+       <div class="col-md-1 col-1 col-sm-1"  style=" font-weight:900; cursor:pointer; padding:2px;"><center><p class="noselect arrow" id="rarrow">&#62  </p></center></div>
        </div>
        <!-- end form -->
        <div class="lightbox" id="lightbox-blinkUp">

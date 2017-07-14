@@ -23,29 +23,6 @@ window.onload = (function () {
       activeHeader: 'open-icon'
     };
 
-    $('#accordion-static-config').accordion({
-      header: 'legend',
-      active: false,
-      collapsible: true,
-      icons: icons,
-      heightStyle: 'content'
-    });
-
-    $('#accordion-proxy-config').accordion({
-      header: 'legend',
-      active: false,
-      collapsible: true,
-      icons: icons,
-      heightStyle: 'content'
-    });
-
-    $('#accordion-advanced-config').accordion({
-      header: 'legend',
-      active: false,
-      collapsible: true,
-      icons: icons,
-      heightStyle: 'content'
-    });
 
     // Grab the template and remove it from the DOM to prevent duplicate IDs in lightbox
     blinkUpTemplate = $('#lightbox-blinkUp');
