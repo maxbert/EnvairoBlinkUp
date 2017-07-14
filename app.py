@@ -42,12 +42,31 @@ def my_expired_token_callback():
 @app.route("/sites/")
 @jwt_required
 def sites():
-    return render_template("sites.html", sites=["11 East Madison","29 Norman Ave","1 World Trade Center", "2400 Pensylvania Ave", "274 Lafayette Ave"])
+    token = get_jwt_identity()
+    token ="token " + token
+    headers = {"Authorization":token}
+    r = requests.get("https://app.envairo.com/api/sitelist/", headers=headers)
+    sites = []
+    r = r.json()
+    
+    for site in r:
+        sites.append(site['e_id'])
+    return render_template("sites.html", sites=sites)
 
 @app.route("/zone/<sitename>")
 @jwt_required
 def zones(sitename):
-    return render_template("zones.html", sitename=sitename, zones=["conference room", "kitchen", "room 399b"])
+    token = get_jwt_identity()
+    token ="token " + token
+    headers = {"Authorization":token}
+    r = requests.get("https://app.envairo.com/api/zonelist/", headers=headers)
+    sites = []
+    r = r.json()
+    
+    for site in r:
+        sites.append(site['e_id'])
+   
+    return render_template("zones.html", sitename=sitename, zones=sites)
 
 
 @app.route("/configure/", methods=["GET","POST"])
@@ -65,8 +84,10 @@ def key():
 def auth():
     username = request.json.get('username', None)
     password = request.json.get('password', None)
-    if username in username_table and password == username_table[username].password:
-        access_token = create_access_token(identity=username)
+    r = requests.post("https://app.envairo.com/api/api-token-auth/",data={"username":username,"password":password})
+    if 'token' in r.json():
+        pctoken = r.json()['token']
+        access_token = create_access_token(identity=pctoken)
         resp = jsonify({'login': True})
         set_access_cookies(resp, access_token)
         return resp, 200

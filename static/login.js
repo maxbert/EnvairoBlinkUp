@@ -19,3 +19,6 @@ function getToke(){
 	alert('username or passowrd incorrect');
     }
 }
+window.onload= function(){
+    $('#zarrow').on('click',function(){window.location.replace('../sites')});
+};

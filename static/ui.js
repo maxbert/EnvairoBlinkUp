@@ -76,7 +76,7 @@ function showpass(){
 
 
 
-
+$('#zarrow').on('click',function(){window.location.replace('../sites')});
 function blinkUp (environment) { // eslint-disable-line no-unused-vars
   if (environment === 'disconnect') {
     disconnectDevice();
