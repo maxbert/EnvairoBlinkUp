@@ -42,7 +42,20 @@ def my_expired_token_callback():
 @app.route('/dashboard/<sitename>/<zone>/')
 @jwt_required
 def dashboard(sitename,zone):
-    return render_template("dashboard.html",sitename=sitename,zone=zone)
+    token = get_jwt_identity()
+    token ="token " + token
+    headers = {"Authorization":token}
+    r = requests.get("https://app.envairo.com/api/zonelist/", headers=headers)
+    r = r.json()
+    area = ""
+    height = ""
+    for zoner in r:
+        if zoner['e_id'] == zone:
+            area = int(zoner['area'])
+            height = int(zoner['height'])
+
+        
+    return render_template("dashboard.html",sitename=sitename,zone=zone,area=area,height=height)
 
 @app.route("/sites/")
 @jwt_required
@@ -57,6 +70,31 @@ def sites():
     for site in r:
         sites.append(site['e_id'])
     return render_template("sites.html", sites=sites)
+
+
+@app.route("/dashboard/<sitename>/<zone>/<point>/", methods=["GET","POST"])
+@jwt_required
+def getPoint(sitename,zone,point):
+    apiCall = "https://app.envairo.com/api/zones/" + sitename + "/" + zone + "." + point
+    
+    token = get_jwt_identity()
+    token ="token " + token
+    headers = {"Authorization":token}
+    r = requests.get(apiCall, headers=headers)
+    listo = []
+    for o in r.json():
+        obj = {}
+        time = o['date_time'].strip('Z')
+        val = 0
+        if o['value'] > 0:
+            val = o['value']
+       
+        obj['date'] = time
+        obj['value'] = val
+        listo.append(obj)
+    
+    return jsonify(listo)
+
 
 @app.route("/zone/<sitename>")
 @jwt_required
@@ -81,7 +119,6 @@ def configure():
 
 @app.route("/key/", methods=["POST"])
 def key():
-    print("acessing key")
     return "a6089d2e93525a3a934a202d0ad9063b"
 
 

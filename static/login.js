@@ -6,7 +6,7 @@ function getToke(){
     console.log(user);
     console.log(pass);
     jQuery.ajax ({
-	url: '../auth',
+	url: '/auth',
 	type: "POST",
 	async: false,
 	data: JSON.stringify({"username":user, "password":pass}),

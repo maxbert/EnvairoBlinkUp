@@ -10,12 +10,42 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+g line{
+  stroke: #9FD4FB;;
+}
+
+g path{
+  stroke: #9FD4FB;;
+}
+
+g text{
+  fill: #9FD4FB;;
+}  
+  
+
+.tick line {
+    stroke-dasharray: 2 2 ;
+    stroke: #ccc;
+}
+
+line {
+    color:  #9FD4FB;
+}
+
 .arrow{
     font-size: 450%;
     font-weight: 900;
     cursor:pointer;
 }
 
+
+html{
+    height:100%;
+}
+body{
+    height:100%;
+}
+    
 button{
     font-size: 150%;
     font-weight: 600;
@@ -164,9 +194,10 @@ body {
   margin: 0 auto;
   margin-right:auto;
   width: 100%;
+  height:100%;
   background-color: #18192B;
   color: #9FD4FB;
-  font: monserat sans-serif;
+ 
 }
 
 /* Header Styles */
@@ -499,13 +530,25 @@ ul {
 }
 
 .sitesbod:before{
-    background-image:url('/static/images/build.png');
-    background-size:contain;
-    display: block; content:""; position: absolute; z-index:-1;
-    top:0; left: 0; right: 0; height: 100%;
-    opacity:.35;
     
-
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.35;
+    
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;   
+    background-color:#3b475e;
 }
 
 /* ==========================================================================
