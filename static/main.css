@@ -498,8 +498,8 @@ ul {
     color: #9FD4FB; 
 }
 
-.sitesbod{
-   
+.sitesbod:before{
+    background-image:url('/static/images/build.png');
     background-size:contain;
     display: block; content:""; position: absolute; z-index:-1;
     top:0; left: 0; right: 0; height: 100%;
