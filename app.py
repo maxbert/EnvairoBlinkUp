@@ -84,7 +84,7 @@ def getPoint(sitename,zone,point):
     listo = []
     for o in r.json():
         obj = {}
-        time = o['date_time'].strip('Z')
+        time = o['date_time']
         val = 0
         if o['value'] > 0:
             val = o['value']

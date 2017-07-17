@@ -1,15 +1,13 @@
 var width,height;
 
-height = document.documentElement.clientHeight * 0.5;
+height = document.documentElement.clientHeight * 0.4;
 width = document.documentElement.clientWidth * 0.8;
 
 $('#darrow').on('click',function(){window.location.replace('../../../sites')});
 
 
 
-var svg = d3.select("svg");
-svg.attr('width', width).attr('height',height).append('rect').attr('width',width).attr('height',height).attr('fill','transparent');
-
+$("#plot").attr("width",width).attr("height",height);
 var zone = $("#zone").html();
 var site = $("#sitename").html();
 
@@ -30,12 +28,25 @@ var drawgraph = function(pointype){
 
 	success: function(response) {listo=response;}
     });
+
+    function cast(d) {
+        d.date = new Date(d.date);
+        d.value = +d.value;
+        return d;
+    }
+    var listo2 = [];
+    listo.forEach(function(e){listo2.push(cast(e))});
+    listo = listo2;
+    console.log(listo);
+    var dates = [];
+    listo.forEach(function(e){dates.push(e['date'])});
+    var vals = [];
+    listo.forEach(function(e){vals.push(e['value'])});
     
-
-
-
-
-
+    var ploto = document.getElementById('plot');
+    Plotly.plot( ploto, [{x: dates,y: vals}], {margin: { t: 0 } }, {displayModeBar: false, displaylogo: false, hoverinfo: "y" } );
+    console.log("v6");
+/*
     var chartWidth, chartHeight
     var margin
     
@@ -149,6 +160,20 @@ var drawgraph = function(pointype){
 
 	
     };
+    
+    function mindate(data){
+	var data2 = [];
+	data.forEach(function(e){data2.push(e.date)});
+	return new Date(d3.min(data2));
+    }
+    function maxdate(data){
+	var data2 = [];
+	data.forEach(function(e){data2.push(e.date)});
+	return new Date(d3.max(data2));
+    }
+    x = d3.scaleTime().domain([mindate(items), maxdate(items)]).range([0, chartWidth])
+    y= d3.scaleLinear().domain([200, 1000]).range([chartHeight,0])
+   
     // append a g for all the mouse over nonsense
     var mouseG = svg.append("g")
 	.attr("class", "mouse-over-effects");
@@ -165,7 +190,7 @@ var drawgraph = function(pointype){
 
     // here's a g for each circle and text on the line
     var mousePerLine = mouseG.selectAll('.mouse-per-line')
-	.data(data)
+	.data(items)
 	.enter()
 	.append("g")
 	.attr("class", "mouse-per-line");
@@ -173,9 +198,7 @@ var drawgraph = function(pointype){
     // the circle
     mousePerLine.append("circle")
 	.attr("r", 7)
-	.style("stroke", function(d) {
-	    return color(d.name);
-	})
+	.style("stroke", "#9FD4FB")
 	.style("fill", "none")
 	.style("stroke-width", "1px")
 	.style("opacity", "0");
@@ -252,4 +275,5 @@ var drawgraph = function(pointype){
 		    return "translate(" + mouse[0] + "," + pos.y +")";
 		});
 	});
+*/
 }

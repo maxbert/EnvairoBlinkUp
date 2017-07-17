@@ -6,6 +6,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
@@ -23,6 +24,7 @@
 
     <link rel="shortcut icon" href="/static/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
   <body class="sitesbod">
     
@@ -40,7 +42,7 @@
 	<ul class="nav navbar-nav justify-content-end">
 	  <li>
 	    
-	    <form class="form-inline" action="../configure/">
+	    <form class="form-inline" action="/configure/">
 	      <button class="btn btn-outline-primary" type="submit">Configure Nodes</button>
 	    </form>
 	  </li>
@@ -66,7 +68,7 @@
       <br class="space">    
     </div>
     <div class="container-fluid">
-      <div class="row justify-content-center" style ="background-color:#18192B;">
+      <div class="row justify-content-center">
 	
 	<div class="col-4 col-md-3">
 	  <button class="btn btn-outline-primary btn-block" onClick="">Occupancy</button>
@@ -88,9 +90,8 @@
 	  <br>
 	  <center><h1 style="font-size:200%;border-bottom: 2px solid;"><b id="pointtype">  Occupancy </b> over time</h1></center>
 	  <br>
-	  
-	  <svg ></svg>
-	  
+	  <div id="plot">
+	  </div>
 	  <script src="/static/dashboard.js"></script>
 	  <br class="space">
 	</div>
@@ -104,9 +105,9 @@
 	  <center><h1 style="font-size:200%;border-bottom: 2px solid;"> {{zone}} </h1></center>
 	  <br>
 	 
-	  <h1> Area:</h1><h3> {{area}} </h3>
+	  <h1> Area: {{area}} Square Feet </h1>
 	  <br>
-	  <h1> Height: </h1><h3> {{height}}</h3>
+	  <h1> Height: {{height}} Feet</h1>
 	</div>
       </div>
   </body>

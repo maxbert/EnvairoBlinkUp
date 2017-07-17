@@ -13,13 +13,14 @@ function getToke(){
 	contentType: "application/json; charset=utf-8",
 	success: function(response) { token = response;}
     });
+
     if(token.login){
-	window.location.replace('../sites/');
+	window.location.replace('/sites/');
     }else{
 	alert('username or passowrd incorrect');
     }
 }
 window.onload= function(){
-    $('#zarrow').on('click',function(){window.location.replace('../sites')});
-        $('#darrow').on('click',function(){window.location.replace('../../../sites')});
+    $('#zarrow').on('click',function(){window.location.replace('/sites')});
+    $('#darrow').on('click',function(){window.location.replace('/sites')});
 };
