@@ -7,12 +7,15 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+  
+    
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>-->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -24,6 +27,8 @@
 
     <link rel="shortcut icon" href="/static/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
   <body class="sitesbod">
@@ -79,7 +84,7 @@
 	</div>
 
 	<div class="col-4 col-sm-4 col-md-3">
-	  <button class="btn btn-outline-primary btn-block" onClick="drawgraph({name:'CO2',apiref:'room.co2.1'})"> CO2</button>
+	  <button class="btn btn-outline-primary btn-block" onClick="drawgraph({name:'CO2',apiref:'room.co2.1'}, 'init')"> CO2</button>
 	</div>
       </div>
       <br class="space">
@@ -101,6 +106,60 @@
       </div>
       <div class="row">
 	<div class="col-9 col-md-5 col-sm-9 offset-1 align-self-start" style="background-color:#18192B;">
+	  <br>
+	  <center><h1 style="font-size:200%;border-bottom: 2px solid;">Graph Controls </h1></center>
+	  <br>
+	  <div class="container-fluid">
+	    <div class="row justify-content-center">
+	      
+	      <div class="col-12 col-md-12 col-lg-12 col-xl-6">
+		<button class="btn btn-outline-primary btn-block" onClick="">Download Plot as PNG</button>
+	      </div>
+	      <div class="col-12 col-md-12 col-lg-12 col-xl-6">
+		<button class="btn btn-outline-primary btn-block" onClick="">Download Data as CSV</button>
+	      </div>
+	      <div class="col-1"></div>
+	    </div>
+	    <br class="space">
+	    <div class="row justify-content-center">
+	      <div class="col-12">
+		<h3>Select time range</h3>
+	      </div>
+	    </div>
+	    <div class="row justify-content-center">
+	      <div class="col-2">From</div>
+	      <div class="col-4">
+		<div class="container">
+		  <div class="input-group date">
+		    <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY">
+		    <script> $('#datepicker').datepicker(); console.log(d3.min(date) </script>
+		  </div>
+		</div>
+	      </div>
+	      <div class="col-2">To</div>
+	      <div class="col-4">
+		<div class="container">
+		  <div class="input-group date">
+		    <input type="text" class="form-control" id="datepicker2" placeholder="MM/DD/YYYY">
+		    <script> $('#datepicker2').datepicker(); </script>
+		  </div>
+		</div>
+	      </div>
+	      
+	      </div>
+	      
+	    <br>
+	    <div class="row justify-content-center">
+	      <div class="col-6">
+		<button class="btn btn-outline-primary btn-block" onClick=""> Apply</button>
+	      </div>
+	    </div>
+	    <br class="space">
+	  </div>
+	      
+	</div>
+	<br class="hidden-md-up space">
+	<div class="col-9 col-md-4 col-sm-9 offset-1 align-self-start" style="background-color:#18192B;">
 	  <br>
 	  <center><h1 style="font-size:200%;border-bottom: 2px solid;"> {{zone}} </h1></center>
 	  <br>
