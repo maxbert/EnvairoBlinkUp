@@ -1,16 +1,18 @@
 var width,height;
-
+//get dimentions for the graph space
 height = document.documentElement.clientHeight * 0.4;
 width = document.documentElement.clientWidth * 0.8;
+//make the back button work
+$('#darrow').on('click',function(){window.location.replace('/sites')});
 
-$('#darrow').on('click',function(){window.location.replace('../../../sites')});
-
-
+//set the size of the plot div
 
 $("#plot").attr("width",width).attr("height",height);
-var zone = $("#zone").html();
+var zone = $("#zone").html();//get zone name and site name, which are written into hidden divs on page load
 var site = $("#sitename").html();
 
+//the plotting function
+//pointtype is an object, {name:displayname, apiref:pointname}
 
 var drawgraph = function(pointype){
     
@@ -18,6 +20,7 @@ var drawgraph = function(pointype){
     console.log(pointype);
     var listo;
     $("#pointtype").html(pointype.name);
+    //call the flask app to return the data
     var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref +"/"
 
     jQuery.ajax ({
@@ -28,24 +31,64 @@ var drawgraph = function(pointype){
 
 	success: function(response) {listo=response;}
     });
-
+    //make values positive and make the date a real date object
     function cast(d) {
         d.date = new Date(d.date);
         d.value = +d.value;
         return d;
     }
+    //cast the list
     var listo2 = [];
     listo.forEach(function(e){listo2.push(cast(e))});
     listo = listo2;
-    console.log(listo);
+    //make a date list and a value list for x and y plotting
     var dates = [];
     listo.forEach(function(e){dates.push(e['date'])});
     var vals = [];
     listo.forEach(function(e){vals.push(e['value'])});
-    
+
+
+    //plotly code
     var ploto = document.getElementById('plot');
-    Plotly.plot( ploto, [{x: dates,y: vals}], {margin: { t: 0 } }, {displayModeBar: false, displaylogo: false, hoverinfo: "y" } );
-    console.log("v6");
+    Plotly.plot( ploto,
+		 [{x: dates,
+		   y: vals,
+		   line: { color: "#9FD4FB" }}],
+
+		 {margin: { t: 0 },
+		  paper_bgcolor:"transparent",
+		  plot_bgcolor:"transparent",
+		  xaxis: {
+		      autorange: true,
+		      showgrid: false,
+		      zeroline: false,
+		      showline: false,
+		      autotick: true,
+		      ticks: '',
+		      showticklabels: true,
+		      tickfont: {
+			  family: "montserrat, sans-serif",
+			  color:"#9FD4FB"
+		      }
+		  },
+		  yaxis: {
+		      autorange: true,
+		      showgrid: false,
+		      zeroline: false,
+		      showline: false,
+		      autotick: true,
+		      ticks: '',
+		      showticklabels: true,
+		      tickfont: {
+			  family: "montserrat, sans-serif",
+			  color:"#9FD4FB"
+		      }
+		  }},
+
+		 {displayModeBar: false,
+		  displaylogo: false,
+		  hoverinfo: "y"} );
+    console.log("v18");
 /*
     var chartWidth, chartHeight
     var margin
