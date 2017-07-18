@@ -132,7 +132,12 @@
 		<div class="container">
 		  <div class="input-group date">
 		    <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY">
-		    <script> $('#datepicker').datepicker(); console.log(d3.min(date) </script>
+		    <script> $('#datepicker').datepicker(
+		      {clearBtn :true,
+		      startDate: formatDate(d3.min(date)),
+		      endDate: formatDate(d3.max(date))
+		      }
+		      ); </script>
 		  </div>
 		</div>
 	      </div>
@@ -141,7 +146,12 @@
 		<div class="container">
 		  <div class="input-group date">
 		    <input type="text" class="form-control" id="datepicker2" placeholder="MM/DD/YYYY">
-		    <script> $('#datepicker2').datepicker(); </script>
+		    <script> $('#datepicker2').datepicker(
+		      {clearBtn :true,
+		      startDate: formatDate(d3.min(date)),
+		      endDate: formatDate(d3.max(date))
+		      }
+		      ); </script>
 		  </div>
 		</div>
 	      </div>
@@ -151,7 +161,7 @@
 	    <br>
 	    <div class="row justify-content-center">
 	      <div class="col-6">
-		<button class="btn btn-outline-primary btn-block" onClick=""> Apply</button>
+		<button class="btn btn-outline-primary btn-block" onClick="drawgraph({name:active,apiref:'room.co2.1'}, 'refresh',$('#datepicker').val(),$('#datepicker2').val());"> Apply</button>
 	      </div>
 	    </div>
 	    <br class="space">

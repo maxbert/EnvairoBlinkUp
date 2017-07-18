@@ -1,3 +1,14 @@
+function formatDate(date) {
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth() +1;
+    var year = date.getFullYear();
+
+    return monthIndex+ '/' + day + '/' + year;
+}
+
+
+
 
 var width,height;
 //get dimentions for the graph space
@@ -17,14 +28,19 @@ var val=[];
 //pointtype is an object, {name:displayname, apiref:pointname}
 
 var active = "none"
-var drawgraph = function(pointype,state){
+var drawgraph = function(pointype,state,start,end){
+   
     if( active == pointype.name && state != 'refresh'){
 	return;
     }
-
+    
+    
+    if(start && end){
+	start = new Date(start);
+	end = new Date(end);
+    }
+    
     active = pointype.name;
-
-    console.log(pointype);
     var listo;
     $("#pointtype").html(pointype.name);
     //call the flask app to return the data
@@ -44,61 +60,87 @@ var drawgraph = function(pointype,state){
         d.value = +d.value;
         return d;
     }
+   
+
+    function within(d, start, end){
+	return(d >= start && d <=end);
+    }
     //cast the list
     var listo2 = [];
     listo.forEach(function(e){listo2.push(cast(e))});
-    listo = listo2;
+
+    listo2.forEach(function(e){
+	if(start && end){
+	    if(within((e['date']),start,end)){
+		listo2.push(e);
+	    }
+	}
+    });
+    
+    listo=listo2;
+		 
     //make a date list and a value list for x and y plotting
     var dates = [];
     listo.forEach(function(e){dates.push(e['date'])});
     var vals = [];
     listo.forEach(function(e){vals.push(e['value'])});
-    date=dates;val=vals;
-
+    if(state=='init'){
+	date=dates;
+    }
+    val=vals;
+    
     //plotly code
     var ploto = document.getElementById('plot');
-    Plotly.plot( ploto,
-		 [{x: dates,
-		   y: vals,
-		   line: { color: "#9FD4FB" }}],
+    if(state == 'refresh'){
+	console.log('restyling');
+	
+	Plotly.restyle( ploto,
+		 {x: [dates],
+		  y: [vals]}, [0]);
+    }else{
+	Plotly.newPlot( ploto,
+			[{x: dates,
+			  y: vals,
+			  line: { color: "#9FD4FB" }}],
 
-		 {margin: { t: 0 },
-		  paper_bgcolor:"transparent",
-		  plot_bgcolor:"transparent",
-		  xaxis: {
-		      autorange: true,
-		      showgrid: false,
-		      zeroline: false,
-		      showline: false,
-		      autotick: true,
-		      ticks: '',
-		      showticklabels: true,
-		      tickfont: {
-			  family: "montserrat, sans-serif",
-			  color:"#9FD4FB"
-		      }
-		  },
-		  yaxis: {
-		      autorange: true,
-		      showgrid: false,
-		      zeroline: false,
-		      showline: false,
-		      autotick: true,
-		      ticks: '',
-		      showticklabels: true,
-		      tickfont: {
-			  family: "montserrat, sans-serif",
-			  color:"#9FD4FB"
-		      }
-		  }},
+			{margin: { t: 0 },
+			 paper_bgcolor:"transparent",
+			 plot_bgcolor:"transparent",
+			 xaxis: {
+			     autorange: true,
+			     showgrid: false,
+			     zeroline: false,
+			     showline: false,
+			     autotick: true,
+			     ticks: '',
+			     showticklabels: true,
+			     tickfont: {
+				 family: "montserrat, sans-serif",
+				 color:"#9FD4FB"
+			     }
+			 },
+			 yaxis: {
+			     autorange: true,
+			     showgrid: false,
+			     zeroline: false,
+			     showline: false,
+			     autotick: true,
+			     ticks: '',
+			     showticklabels: true,
+			     tickfont: {
+				 family: "montserrat, sans-serif",
+				 color:"#9FD4FB"
+			     }
+			 }},
 
-		 {displayModeBar: false,
-		  displaylogo: false,
-		  hoverinfo: "y",
-		  dragmode:'pan',
-		  scrollZoom:true
-		 } );
-    console.log("v23");
+			{displayModeBar: false,
+			 displaylogo: false,
+			 hoverinfo: "y",
+			 dragmode:'pan',
+			 scrollZoom:true
+			} );
+    }
+    console.log("v25");
 }
 
 
