@@ -113,25 +113,27 @@
 	    <div class="row justify-content-center">
 	      
 	      <div class="col-12 col-md-12 col-lg-12 col-xl-6">
-		<button class="btn btn-outline-primary btn-block" onClick="">Download Plot as PNG</button>
+		<button class="btn btn-outline-primary btn-block" onClick="Plotly.downloadImage($('#plot'), {format: 'png', width: 800, height: 600, filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
 	      </div>
 	      <div class="col-12 col-md-12 col-lg-12 col-xl-6">
-		<button class="btn btn-outline-primary btn-block" onClick="">Download Data as CSV</button>
+		<form id="downloadbutton">
+		      <button onClick="seeessvee(active)" class="btn btn-outline-primary btn-block">Download Data as CSV</button>
+		</form> 
 	      </div>
 	      <div class="col-1"></div>
 	    </div>
 	    <br class="space">
 	    <div class="row justify-content-center">
-	      <div class="col-12">
+	      <div class="col-4">
 		<h3>Select time range</h3>
 	      </div>
 	    </div>
-	    <div class="row justify-content-center">
-	      <div class="col-2">From</div>
-	      <div class="col-4">
+	    <div class="row">
+	      <div class="col-12 col-md-6">
 		<div class="container">
 		  <div class="input-group date">
-		    <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY">
+		    <label for="datepicker">From</label><br>
+		    <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY" style="background-color: #C3E2F9;">
 		    <script> $('#datepicker').datepicker(
 		      {clearBtn :true,
 		      startDate: formatDate(d3.min(date)),
@@ -141,11 +143,12 @@
 		  </div>
 		</div>
 	      </div>
-	      <div class="col-2">To</div>
-	      <div class="col-4">
+	      <div class="col-12 col-md-6">
 		<div class="container">
 		  <div class="input-group date">
-		    <input type="text" class="form-control" id="datepicker2" placeholder="MM/DD/YYYY">
+		    <label for="datepicker2">To</label><br>
+		    
+		    <input type="text" class="form-control" id="datepicker2" placeholder="MM/DD/YYYY" style="background-color: #C3E2F9;">
 		    <script> $('#datepicker2').datepicker(
 		      {clearBtn :true,
 		      startDate: formatDate(d3.min(date)),
@@ -161,21 +164,21 @@
 	    <br>
 	    <div class="row justify-content-center">
 	      <div class="col-6">
-		<button class="btn btn-outline-primary btn-block" onClick="drawgraph({name:active,apiref:'room.co2.1'}, 'refresh',$('#datepicker').val(),$('#datepicker2').val());"> Apply</button>
+		<button class="btn btn-outline-primary btn-block" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>
 	      </div>
 	    </div>
 	    <br class="space">
 	  </div>
 	      
 	</div>
-	<br class="hidden-md-up space">
-	<div class="col-9 col-md-4 col-sm-9 offset-1 align-self-start" style="background-color:#18192B;">
+	<div class="col-9 col-md-1"><br class="space"></div>
+	<div class="col-9 col-md-4 col-sm-9 offset-1 offset-md-0 align-self-start" style="background-color:#18192B;">
 	  <br>
 	  <center><h1 style="font-size:200%;border-bottom: 2px solid;"> {{zone}} </h1></center>
 	  <br>
 	 
 	  <h1> Area: {{area}} Square Feet </h1>
-	  <br>
+	  <br><img id="jpg-export"></img>
 	  <h1> Height: {{height}} Feet</h1>
 	</div>
       </div>

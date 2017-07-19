@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, session, redirect, jsonify
 from utils import auth
-import json
+import json,datetime
 import requests
 from flask_jwt_extended import JWTManager, jwt_required, \
     create_access_token,  jwt_refresh_token_required, \
@@ -70,6 +70,56 @@ def sites():
     for site in r:
         sites.append(site['e_id'])
     return render_template("sites.html", sites=sites)
+
+@app.route("/dashboard/<sitename>/<zone>/<point>/download/", methods=["GET","POST"])
+@jwt_required
+def downloadPoint(sitename,zone,point):
+    print request.args
+    requester = request.args
+    withbounds = (not requester['start'] == 'Invalid Date' and not requester['end'] == 'Invalid Date')
+
+    if withbounds:
+        start = datetime.datetime.strptime(requester['start'], "%a %b %d %Y %H:%M:%S GMT-0400 (%Z)")
+        
+        end = datetime.datetime.strptime(requester['end'], "%a %b %d %Y %H:%M:%S GMT-0400 (%Z)")
+
+    apiCall = "https://app.envairo.com/api/zones/" + sitename + "/" + zone + "." + point
+    
+    token = get_jwt_identity()
+    token ="token " + token
+    headers = {"Authorization":token}
+    r = requests.get(apiCall, headers=headers)
+    listo = []
+    for o in r.json():
+        obj = {}
+        time = o['date_time']
+        timebutinpy = datetime.datetime.strptime(time, "%Y-%m-%dT%H:%M:%SZ")
+        val = 0
+        if o['value'] > 0:
+            val = o['value']
+            
+        if not withbounds:
+            obj['date'] = time
+            obj['value']=val
+            listo.append(obj)
+        else:
+            if timebutinpy > start and timebutinpy < end:
+                obj['date']=time
+                obj['value'] = val
+                listo.append(obj)
+    csvfile = 'date,value\n'
+    for item in listo:
+        csvfile += item['date'] + "," + str(item['value']) +'\n'
+    with open('static/' + sitename +'_' +  zone +'_'+ point +'.csv', 'w+') as f:
+       f.write(csvfile)
+        
+    return  '/static/' + sitename +'_' +  zone +'_'+ point +'.csv'
+
+@app.route("/dashboard/<sitename>/<zone>/<point>/remove", methods=["GET","POST"])
+@jwt_required
+def removePoint(sitename,zone,point):
+    os.remove('/static/' + sitename +'_' +  zone +'_'+ point +'.csv')
+    return true
 
 
 @app.route("/dashboard/<sitename>/<zone>/<point>/", methods=["GET","POST"])

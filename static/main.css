@@ -249,24 +249,24 @@ header h2 {
   width: 100%;
 }
 
-#form input, #form label {
+#form input, #form label, label {
   display: block;
   width: 100%;
 }
 
-#form .radio-group input, #form .radio-group label {
+#form .radio-group input, #form .radio-group label, label {
   display: inline;
   width: auto;
 }
 
-#form label {
+#form label, label {
     color: #C3E2F9;
   font: bold 17px arial, sans-serif;
   letter-spacing: 1px;
   margin-bottom: 3px;
 }
 
-#form input {
+#form input, input {
     background-color: #C3E2F9;
     border: none;
     box-sizing: border-box;
@@ -274,13 +274,16 @@ header h2 {
     padding: 3px;
 }
 
-#form input[type="text"],
+#form input[type="text"], input[type="text"],
 #form input[type="password"] {
   border: solid 5px transparent;
   color: #969696;
   transition: border 0.3s;
 }
-#form input[type="text"]:focus,
+
+
+
+#form input[type="text"]:focus, input[type="text"]:focus,
 #form input[type="password"]:focus {
   border: solid 5px rgba(0, 0, 0, 0.1);
   color: black;
@@ -316,7 +319,7 @@ header h2 {
   color: rgba(255 , 255, 255, 0.6);
 }
 
-#form section.secondary-inputs input[type="text"]:focus,
+#form section.secondary-inputs input[type="text"]:focus, 
 #form section.secondary-inputs input[type="password"]:focus {
   border: solid 5px rgba(255, 255, 255, 0.3);
   color: white;
