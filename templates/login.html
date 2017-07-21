@@ -22,7 +22,7 @@
 
     <link rel="shortcut icon" href="/static/favicon.ico">
   </head>
-  <body>
+  <body style="background-color:#18192b; color:white">
     <nav class="navbar sticky-top navbar-toggleable-md navbar-inverse bg-faded" style="background-color:#18192B;">
        <a class="navbar-brand" href="http://envairo.com"><img id="logo" alt="Logo" src="/static/images/logo.png" height="51px" width="166px"/></a>
 
@@ -42,14 +42,14 @@
 	  <div class="col-md-6">
 	      <center>
 	      <div class="field">
-		<label for="user">Username</label>
-		<input name="user" type="text" id="user" placeholder="Username"/>
+		<label for="user" style="color:white;">Username</label>
+		<input name="user" type="text" id="user"  style="background-color:white; color:#18192b;"/>
 	      </div>
 	    </div>
 	    <div class="col-md-6"> 
 	      <div class="field">
-		<label for="pass">Password</label>
-		<input name="pass" id="pass" type="password" placeholder="Password" />
+		<label for="pass" style="color:white">Password</label>
+		<input name="pass" id="pass" type="password"  style="background-color:white; color:#18192b;"/>
 	      </div>
 	    </div>
 	    <br class="clear" />
@@ -58,7 +58,7 @@
 	</div>
 	<div class="row">
 	  <div class="col-md-6 offset-md-3 col-8 offset-2">
-	    <button type="submit" onClick="getToke()" id="loginbut" class="btn btn-block btn-primary">login</button>
+	    <button type="submit" onClick="getToke()" id="loginbut" class="btn btn-block" style="background-color:#e2e2e2; color:#18192b;">login</button>
 
 	    <script>
 	      $("#pass").keyup(function(event) {
