@@ -44,15 +44,15 @@
 	  
       <div class=" collapse navbar-collapse justiy-content-end" id="navbarTogglerDemo02">
 	<ul class="navbar-nav mr-auto"></ul>
-	<ul class="nav navbar-nav justify-content-end align-items-start justify-content-top">
+	<ul class="nav navbar-nav justify-content-end align-items-start justify-content-top" style="margin:0;">
 	  <li class="nav-item align-self-start">
-	    <a class="nav-link" href="/configure/" style="padding-bottom:25px;">configure</a>
+	    <a class="nav-link active" href="/configure/" style="padding-bottom:25px;">Configure Node</a>
 	  </li>
 	  <li class="nav-item align-self-start">
-	    <a class="nav-link" href="/sites/" style="padding-bottom:25px;">sites</a>
+	    <a class="nav-link active" href="/sites/" style="padding-bottom:25px;">Sites</a>
 	  </li>
 	  <li class="nav-item align-self-start">
-	    <a class="nav-link py-md-35" href="/login/">logout</a>
+	    <a class="nav-link active py-md-35" href="/login/">Logout</a>
 	  </li>
 	</ul>
       </div>
@@ -61,16 +61,26 @@
     <div style="display:none;" id="sitename">{{sitename}}</div>
     <div style="display:none;" id="zone">{{zone}}</div>
     
-    
-    <br class="space">
-    <div class="container-fluid" style="max-width:600px; width:100%">
-      <div class="row " style="background-color:#18192B;">
-	<div class="col-md-3 col-3 col-sm-3 arrow" id="darrow" style="font-size:300%; font-weight:900; cursor:pointer;">
-	  &#60
+    <div class="container-fluid">
+      <div class="row justify-content-left " style="background-color:#18192B; color:white; padding:20px;">
+	<div class="col-3" >
+	  <h1 class="dash"> {{zone}} </h1>
+	  <a href="/zone/{{sitename}}" style="color:#e2e2e2;" ><h4> {{sitename}} </h4></a>
 	</div>
-
-	<div class="col-md-6 col-6" >
-	<center> <h1> {{sitename}} >> {{zone}} </h1></center>
+	<div class="col-2">
+	</div>
+	<div class="col-3">
+	  <center>
+	  <h4 style="color:#e2e2e2;" id="activate">CO2</h4>
+	  <h1 class="dash" id="num">600</h1>
+	  <h6 id="dategot"> as of 7:20 am July 21st</h6>
+	  </center>
+	</div>
+	<div class="col-3" >
+	  <center>
+	  <h5 style="color:#e2e2e2;"> Area </h5>
+	  <h1 class="dash" style="display:inline;">{{area}}</h1><h5 style="display:inline; color:#e2e2e2; margin:0;">Sq Ft</h5>
+	  </center>
 	</div>
       </div>
       <br class="space">    
@@ -85,7 +95,7 @@
 	<div class="col-4 col-sm-4 col-md-2">
 	  <button class="btn btn-outline-primary btn-block" onClick="">Fresh Air</button>
 	</div>
-
+x
 	<div class="col-4 col-sm-4 col-md-3">
 	  <button class="btn btn-outline-primary btn-block" onClick="drawgraph({name:'CO2',apiref:'room.co2.1'}, 'init')"> CO2</button>
 	</div>
@@ -94,9 +104,9 @@
       <div class="row">
 	
 	
-	<div class="col-12 col-sm-12 col-md-10 offset-md-1" style="background-color:#18192B;">
+	<div class="col-12 col-sm-12 col-md-10 offset-md-1">
 	  <br>
-	  <center><h1 style="font-size:200%;border-bottom: 2px solid;"><b id="pointtype">  Occupancy </b> over time</h1></center>
+	  <center><h1 style="font-size:200%;"><b id="pointtype">  </b></center>
 	  <br>
 	  <div id="plot">
 	  </div>
@@ -107,64 +117,15 @@
       <div class="row">
 	<div class="col-12 col-md-12"> <br class="space"> </div>
       </div>
-      <div class="row">
-	<div class="col-9 col-md-5 col-sm-9 offset-1 align-self-start" style="background-color:#18192B;">
-	  <br>
-	  <center><h1 style="font-size:200%;border-bottom: 2px solid;">Graph Controls </h1></center>
-	  <br>
-	  <div class="container-fluid">
-	    <div class="row justify-content-center">
-	      
-	      <div class="col-12 col-md-12 col-lg-12 col-xl-6">
-		<button class="btn btn-outline-primary btn-block" onClick="Plotly.downloadImage($('#plot'), {format: 'png', width: 800, height: 600, filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
-	      </div>
-	      <div class="col-12 col-md-12 col-lg-12 col-xl-6">
+    </div>
+    <footer class="footer" style="background-color:#e2e2e2;">
+      <div class="container-fluid">
+	<div class="row">
+	    <button class="btn btn-outline-primary btn-block" onClick="Plotly.downloadImage($('#plot'), {format: 'jpg', width: 800, height: 600, filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
 		<form id="downloadbutton">
 		      <button onClick="seeessvee(active)" class="btn btn-outline-primary btn-block">Download Data as CSV</button>
 		</form> 
-	      </div>
-	      <div class="col-1"></div>
-	    </div>
-	    <br class="space">
-	    <div class="row justify-content-center">
-	      <div class="col-4">
-		<h3>Select time range</h3>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="col-12 col-md-6">
-		<div class="container">
-		  <div class="input-group date">
-		    <label for="datepicker">From</label><br>
-		    <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY" style="background-color: #C3E2F9;">
-		    <script> $('#datepicker').datepicker(
-		      {clearBtn :true,
-		      startDate: formatDate(d3.min(date)),
-		      endDate: formatDate(d3.max(date))
-		      }
-		      ); </script>
-		  </div>
-		</div>
-	      </div>
-	      <div class="col-12 col-md-6">
-		<div class="container">
-		  <div class="input-group date">
-		    <label for="datepicker2">To</label><br>
-		    
-		    <input type="text" class="form-control" id="datepicker2" placeholder="MM/DD/YYYY" style="background-color: #C3E2F9;">
-		    <script> $('#datepicker2').datepicker(
-		      {clearBtn :true,
-		      startDate: formatDate(d3.min(date)),
-		      endDate: formatDate(d3.max(date))
-		      }
-		      ); </script>
-		  </div>
-		</div>
-	      </div>
-	      
-	      </div>
-	      
-	    <br>
+
 	    <div class="row justify-content-center">
 	      <div class="col-6">
 		<button class="btn btn-outline-primary btn-block" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>

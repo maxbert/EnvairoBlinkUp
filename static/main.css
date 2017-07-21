@@ -16,6 +16,16 @@
     cursor:pointer;
 }
 
+.dash{
+    font-weight:900;
+    font-size:300%;
+    margin:0;
+}
+
+.active:hover{
+    color:#e2e2e2;
+}
+
 
 html{
     height:100%;
@@ -507,10 +517,10 @@ ul {
     width:91%;
 }
 
-.nav-link{
+.nav-linko{
     color:white;
 }
-.nav-link:hover{
+.nav-linko:hover{
     color:#e2e2e2;
 }
 

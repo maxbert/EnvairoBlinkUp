@@ -51,6 +51,7 @@ var drawgraph = function(pointype,state,start,end){
     active = pointype;
     var listo = [];
     $("#pointtype").html(pointype.name);
+    $("#activate").html(pointype.name);
     //call the flask app to return the data
     var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref +"/"
 
@@ -104,9 +105,12 @@ var drawgraph = function(pointype,state,start,end){
     }
     
     val=vals;
-
-
-
+    
+    var maxdate = d3.max(dates);
+    var maxval = 0;
+    listo.forEach(function(e){if e['date'] == maxdate{maxval=e['val']}});
+    $('#dategot').html(maxdate);
+    $('#num').html(maxval);
 
     //plotly code
     var ploto = document.getElementById('plot');
@@ -132,7 +136,7 @@ var drawgraph = function(pointype,state,start,end){
 	Plotly.newPlot( ploto,
 			[{x: dates,
 			  y: vals,
-			  line: { color: "#9FD4FB" }}],
+			  line: { color: "#18192b" }}],
 
 			{margin: { t: 0 },
 			 paper_bgcolor:"transparent",
@@ -147,7 +151,7 @@ var drawgraph = function(pointype,state,start,end){
 			     showticklabels: true,
 			     tickfont: {
 				 family: "montserrat, sans-serif",
-				 color:"#9FD4FB"
+				 color:"#18192b"
 			     }
 			 },
 			 yaxis: {
@@ -160,7 +164,7 @@ var drawgraph = function(pointype,state,start,end){
 			     showticklabels: true,
 			     tickfont: {
 				 family: "montserrat, sans-serif",
-				 color:"#9FD4FB"
+				 color:"#18192b"
 			     }
 			 }},
 
@@ -171,7 +175,7 @@ var drawgraph = function(pointype,state,start,end){
 			 scrollZoom:true
 			} );
     }
-    console.log("v36");
+    console.log("v38");
 }
 
 
