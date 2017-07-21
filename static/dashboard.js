@@ -108,7 +108,7 @@ var drawgraph = function(pointype,state,start,end){
     
     var maxdate = d3.max(dates);
     var maxval = 0;
-    listo.forEach(function(e){if e['date'] == maxdate{maxval=e['val']}});
+    listo.forEach(function(e){if(e['date'] == maxdate{maxval=e['val']})});
     $('#dategot').html(maxdate);
     $('#num').html(maxval);
 
