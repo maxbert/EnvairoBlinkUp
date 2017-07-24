@@ -29,9 +29,11 @@ function addDays(date, days) {
 
 
 
-var width,height;
+var width,height,footerh,headerh;
 //get dimentions for the graph space
 height = document.documentElement.clientHeight * 0.5;
+footerh = document.documentElement.clientHeight * 0.05;
+headerh = document.documentElement.clientHeight * 0.15;
 width = document.documentElement.clientWidth * 0.8;
 //make the back button work
 var zone = $("#zone").html();//get zone name and site name, which are written into hidden divs on page load
