@@ -115,7 +115,7 @@
 	    </div>
 	    <div class="col-3" style="margin:0; padding:0">
 	      
-	      <input  style="display:inline" type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY">
+	      <input  style="display:inline; background-color:white; color:#18192b;  border-radius:15px;" type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY">
 	      <script> $('#datepicker').datepicker(
 		{clearBtn :true}
 		); </script>
@@ -126,13 +126,13 @@
 	      </p>
 	    </div>
 	    <div class="col-3" style="margin:0; padding:0">
-	      <input type="text" class="form-control" id="datepicker2" placeholder="MM/DD/YYYY"   style="display:inline">
+	      <input type="text" class="form-control" id="datepicker2" placeholder="MM/DD/YYYY"   style="display:inline; background-color:white; color:#18192b;  border-radius:15px;">
 	      <script> $('#datepicker2').datepicker(
 		{clearBtn :true}
 		); </script>
 	    </div>
 	  
-	  <button class="btn btn-primary" style="height:40px" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>
+	  <button class="btn btn-primary" style="height:40px; margin-top:3px" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>
 	  </div>
 	</div>
 	<div class="col-4"></div>
