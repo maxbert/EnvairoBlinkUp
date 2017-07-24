@@ -9,6 +9,16 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+footer {
+  position: fixed;
+  bottom: 0;
+  margin-bottom:10px;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  
+  background-color: #e2e2e2;
+}
 
 .arrow{
     font-size: 450%;

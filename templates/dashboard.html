@@ -71,44 +71,29 @@
 	</div>
 	<div class="col-3">
 	  <center>
-	  <h4 style="color:#e2e2e2;" id="activate">CO2</h4>
+	  <h4 style="color:#e2e2e2; margin:0;" id="activate">CO2</h4>
 	  <h1 class="dash" id="num">600</h1>
 	  <h6 id="dategot"> as of 7:20 am July 21st</h6>
 	  </center>
 	</div>
 	<div class="col-3" >
 	  <center>
-	  <h5 style="color:#e2e2e2;"> Area </h5>
+	  <h5 style="color:#e2e2e2; margin:0;"> Area </h5>
 	  <h1 class="dash" style="display:inline;">{{area}}</h1><h5 style="display:inline; color:#e2e2e2; margin:0;">Sq Ft</h5>
 	  </center>
 	</div>
       </div>
       <br class="space">    
     </div>
-    <div class="container-fluid">
-      <div class="row justify-content-center">
-	
-	<div class="col-4 col-md-3">
-	  <button class="btn btn-outline-primary btn-block" onClick="">Occupancy</button>
-	</div>
-
-	<div class="col-4 col-sm-4 col-md-2">
-	  <button class="btn btn-outline-primary btn-block" onClick="">Fresh Air</button>
-	</div>
-x
-	<div class="col-4 col-sm-4 col-md-3">
-	  <button class="btn btn-outline-primary btn-block" onClick="drawgraph({name:'CO2',apiref:'room.co2.1'}, 'init')"> CO2</button>
-	</div>
-      </div>
-      <br class="space">
+    <div class="container-fluid plot">
       <div class="row">
 	
 	
-	<div class="col-12 col-sm-12 col-md-10 offset-md-1">
+	<div class="col-12 col-sm-12 col-md-10 offset-md-1 plot">
 	  <br>
 	  <center><h1 style="font-size:200%;"><b id="pointtype">  </b></center>
 	  <br>
-	  <div id="plot">
+	  <div class="plot" id="plot">
 	  </div>
 	  <script src="/static/dashboard.js"></script>
 	  <br class="space">
@@ -118,33 +103,50 @@ x
 	<div class="col-12 col-md-12"> <br class="space"> </div>
       </div>
     </div>
-    <footer class="footer" style="background-color:#e2e2e2;">
-      <div class="container-fluid">
-	<div class="row">
-	    <button class="btn btn-outline-primary btn-block" onClick="Plotly.downloadImage($('#plot'), {format: 'jpg', width: 800, height: 600, filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
-		<form id="downloadbutton">
-		      <button onClick="seeessvee(active)" class="btn btn-outline-primary btn-block">Download Data as CSV</button>
-		</form> 
-
-	    <div class="row justify-content-center">
-	      <div class="col-6">
-		<button class="btn btn-outline-primary btn-block" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>
-	      </div>
+    <footer class="footer" style="position:fixed; padding-bottom:80px; padding-top:10px; background-color:#e2e2e2;">
+      <div class="row">
+	<div class="col-md-4 col-12">
+	  <div class="row" style="padding-top:3%"> 
+	    
+	    <div class="col-3" style="margin:0; padding-top:1%">
+	      <p>
+		showing data from
+	      </p>
 	    </div>
-	    <br class="space">
-	  </div>
+	    <div class="col-3" style="margin:0; padding:0">
 	      
+	      <input  style="display:inline" type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY">
+	      <script> $('#datepicker').datepicker(
+		{clearBtn :true}
+		); </script>
+	    </div>
+	    <div class="col-1" style="margin:0; padding-top:1%">
+	      <p >
+		to
+	      </p>
+	    </div>
+	    <div class="col-3" style="margin:0; padding:0">
+	      <input type="text" class="form-control" id="datepicker2" placeholder="MM/DD/YYYY"   style="display:inline">
+	      <script> $('#datepicker2').datepicker(
+		{clearBtn :true}
+		); </script>
+	    </div>
+	  
+	  <button class="btn btn-primary" style="height:40px" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>
+	  </div>
 	</div>
-	<div class="col-9 col-md-1"><br class="space"></div>
-	<div class="col-9 col-md-4 col-sm-9 offset-1 offset-md-0 align-self-start" style="background-color:#18192B;">
-	  <br>
-	  <center><h1 style="font-size:200%;border-bottom: 2px solid;"> {{zone}} </h1></center>
-	  <br>
-	 
-	  <h1> Area: {{area}} Square Feet </h1>
-	  <br><img id="jpg-export"></img>
-	  <h1> Height: {{height}} Feet</h1>
+	<div class="col-4"></div>
+	<div class="col-2">
+	  <button class="btn" onClick="Plotly.downloadImage($('#plot'), {format: 'png', filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
 	</div>
+	<div class="col-2">
+	  <form id="downloadbutton">
+	    <button onClick="seeessvee(active)" class="btn">Download Data as CSV</button>
+	  </form>
+	</div>
+	
       </div>
-  </body>
+</div>
+
+</body>
 </html>

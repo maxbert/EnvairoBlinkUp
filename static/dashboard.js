@@ -9,6 +9,17 @@ function formatDate(date) {
     return monthIndex+ '/' + day + '/' + year;
 }
 
+function formatDateWithTime(date) {
+    date = new Date(date);
+    var day = date.getDate();
+    var monthIndex = date.getMonth() +1;
+    var hours = date.getHours() % 12
+    if(hours == 0){hours = 12;}
+    var minutes = date.getMinutes()
+
+    return hours + ":" + minutes + " on " + monthIndex+ '/' + day;
+}
+
 function addDays(date, days) {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
@@ -20,16 +31,18 @@ function addDays(date, days) {
 
 var width,height;
 //get dimentions for the graph space
-height = document.documentElement.clientHeight * 0.4;
+height = document.documentElement.clientHeight * 0.5;
 width = document.documentElement.clientWidth * 0.8;
 //make the back button work
-$('#darrow').on('click',function(){window.location.replace('/sites')});
+var zone = $("#zone").html();//get zone name and site name, which are written into hidden divs on page load
+var site = $("#sitename").html();
+$('#darrow').on('click',function(){window.location.replace('/sites/' + site)});
 
 //set the size of the plot div
 
-$("#plot").attr("width",width).attr("height",height);
-var zone = $("#zone").html();//get zone name and site name, which are written into hidden divs on page load
-var site = $("#sitename").html();
+$(".plot").css("height",height);
+
+
 var date=[];
 var val=[];
 //the plotting function
@@ -46,6 +59,9 @@ var drawgraph = function(pointype,state,start,end){
     if(start && end){
 	start = new Date(start);
 	end = new Date(end);
+    }else{
+	var start = "";
+	var end = "";
     }
     
     active = pointype;
@@ -53,13 +69,14 @@ var drawgraph = function(pointype,state,start,end){
     $("#pointtype").html(pointype.name);
     $("#activate").html(pointype.name);
     //call the flask app to return the data
-    var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref +"/"
+    
+    var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref
 
     jQuery.ajax ({
 	url: apiCall,
 	type: "GET",
 	async: false,
-
+	data:{'start':start,'end':end},
 
 	success: function(response) {listo=response;}
     });
@@ -69,11 +86,12 @@ var drawgraph = function(pointype,state,start,end){
         d.value = +d.value;
         return d;
     }
+    console.log(listo);
 
     console.log(typeof(listo));
-    if (typeof(listo) == typeof('abc')){
-	window.location.replace('/login');
-    }
+   // if (typeof(listo) == typeof('abc')){
+//	window.location.replace('/login');
+  //  }
     function within(d, start, end){
 	return(d >= start && d <=end);
     }
@@ -108,9 +126,13 @@ var drawgraph = function(pointype,state,start,end){
     
     var maxdate = d3.max(dates);
     var maxval = 0;
-    listo.forEach(function(e){if(e['date'] == maxdate{maxval=e['val']})});
-    $('#dategot').html(maxdate);
+    listo.forEach(function(e){
+	if(e['date'] == maxdate){
+	    
+	    maxval=e['value']}});
+    $('#dategot').html("as of " + formatDateWithTime( maxdate));
     $('#num').html(maxval);
+    console.log(maxval);
 
     //plotly code
     var ploto = document.getElementById('plot');
@@ -175,23 +197,8 @@ var drawgraph = function(pointype,state,start,end){
 			 scrollZoom:true
 			} );
     }
-    console.log("v38");
+    console.log("v40");
 }
-
-
-
-
-function imaging(gd)
-     {
-      Plotly.toImage(gd,{height:300,width:300})
-         .then(
-            function(url)
-         {
-             $('#jpg_export').attr("src", url);
-             return Plotly.toImage(gd,{format:'jpeg',height:400,width:400});
-         }
-         )
-     }
 
 
 function seeessvee(pointype){
