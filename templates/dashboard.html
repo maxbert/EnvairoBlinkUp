@@ -33,7 +33,17 @@
   </head>
   <body class="sitesbod">
     
-     
+    <div class="modal" style="display:none;
+	 position:   fixed;
+	 z-index:    1000;
+	 top:        0;
+	 left:       0;
+	 height:     100%;
+	 width:      100%;
+	 background: rgba( 255, 255, 255, .8 ) 
+         url('/static/images/loading.gif') 
+         50% 50% 
+         no-repeat;"><!-- Place at bottom of page --></div>
     <nav class="navbar sticky-top navbar-toggleable-sm navbar-inverse bg-faded py-3 py-lg-0" style="background-color:#18192B;">
       <button class="navbar-toggler navbar-toggler-right" style="height:60px;" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon" ></span>
@@ -94,9 +104,9 @@
 	
 	<div class="col-12 col-sm-12 col-md-10 offset-md-1 plot">
 	  <br>
-	  <center><h1 style="font-size:200%;"><b id="pointtype">  </b></center>
+	  <center><h1 style="font-size:5vh;"><b id="pointtype">  </b></center>
 	  <br>
-	  <div class="plot" id="plot">
+	  <div class="plot" id="plot" style="height:50vh">
 	  </div>
 	  <script src="/static/dashboard.js"></script>
 	  <br class="space">
@@ -109,7 +119,7 @@
     <br class="space">
     <footer class="footer" id="footer" style="position:fixed; padding-bottom:80px; padding-top:10px; background-color:#e2e2e2;">
       <div class="row">
-	<div class="col-md-4 col-12">
+	<div class="col-lg-4 col-md-6 col-12">
 	  <div class="row" style="padding-top:3%"> 
 	    
 	    <div class="col-3" style="margin:0; padding-top:1%">
@@ -135,17 +145,18 @@
 		{clearBtn :true}
 		); </script>
 	    </div>
-	  
-	  <button class="btn btn-primary" style="height:40px; margin-top:3px" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>
+	    <div class="col-1">
+	      <button class="btn btn-primary" style="height:40px; margin-top:3px" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>
+	    </div>
 	  </div>
 	</div>
-	<div class="col-4"></div>
+	<div class="col-lg-4 col-md-2"></div>
 	<div class="col-2">
-	  <button class="btn" onClick="Plotly.downloadImage($('#plot'), {format: 'png', filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
+	  <button style="white-space:normal;" class="btn" onClick="Plotly.downloadImage($('#plot'), {format: 'png', filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
 	</div>
 	<div class="col-2">
 	  <form id="downloadbutton">
-	    <button onClick="seeessvee(active)" class="btn">Download Data as CSV</button>
+	    <button style="white-space:normal;" onClick="seeessvee(active)" class="btn">Download Data as CSV</button>
 	  </form>
 	</div>
 	

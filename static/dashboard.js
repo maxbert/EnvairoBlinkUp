@@ -1,4 +1,7 @@
 
+
+
+
 //date tools
 function formatDate(date) {
     date = new Date(date);
@@ -42,7 +45,7 @@ $('#darrow').on('click',function(){window.location.replace('/sites/' + site)});
 
 //set the size of the plot div
 
-$(".plot").css("height",height);
+//$(".plot").css("height",height);
 
 
 var date=[];
@@ -52,7 +55,8 @@ var val=[];
 
 var active = "none"
 var drawgraph = function(pointype,state,start,end){
-   
+    $(".modal").css("display","block");
+    console.log($("html"))
     if( active == pointype && state != 'refresh'){
 	return;
     }
@@ -73,14 +77,12 @@ var drawgraph = function(pointype,state,start,end){
     //call the flask app to return the data
     
     var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref
-
-    jQuery.ajax ({
+    listo = jQuery.ajax ({
 	url: apiCall,
 	type: "GET",
-	async: false,
 	data:{'start':start,'end':end},
-
-	success: function(response) {listo=response;}
+	
+	success: function(response) {return response;}
     });
     //make values positive and make the date a real date object
     function cast(d) {
@@ -88,12 +90,11 @@ var drawgraph = function(pointype,state,start,end){
         d.value = +d.value;
         return d;
     }
-    console.log(listo);
 
-    console.log(typeof(listo));
-   // if (typeof(listo) == typeof('abc')){
-//	window.location.replace('/login');
-  //  }
+    console.log(listo);
+    if (typeof(listo) == typeof('abc')){
+	window.location.replace('/login');
+    }
     function within(d, start, end){
 	return(d >= start && d <=end);
     }
@@ -200,10 +201,14 @@ var drawgraph = function(pointype,state,start,end){
 			} );
     }
     console.log("v40");
+    $(".modal").css("display","none")
+  
 }
 
 
 function seeessvee(pointype){
+
+    $(".modal").css("display","block");
     var path;
     //call the flask app to return the data
     var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref +"/download/"
@@ -211,25 +216,28 @@ function seeessvee(pointype){
     var start = new Date($('#datepicker').val());
     var end = addDays(new Date($('#datepicker2').val()),1);
     if( !start || !end){
-	jQuery.ajax ({
+	path = jQuery.ajax ({
 	    url: apiCall,
 	    type: "GET",
-	    async: false,
-	    success: function(response) {path=response;}
+	    success: function(response) {return response;}
 	});
     }else{
-	jQuery.ajax ({
+	path = jQuery.ajax ({
 	    url: apiCall,
 	    type: "GET",
-	    async: false,
+	    
 	    data: {'start':start,'end':end},
-	    success: function(response) {path=response;}
+	    success: function(response) { return response;}
 	});
-    $('#downloadbutton').attr('action',path).submit();
+	console.log(path);
+	$('#downloadbutton').attr('action',path).submit();
     
     }
+    $(".modal").css("display","none");
+ 
 }
-    
+   
 
 drawgraph({name:'CO2',apiref:'room.co2.1'}, 'init');
 
+ 
