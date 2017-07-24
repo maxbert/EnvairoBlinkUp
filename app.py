@@ -74,8 +74,6 @@ def sites():
 @app.route("/dashboard/<sitename>/<zone>/<point>/download/", methods=["GET","POST"])
 @jwt_required
 def downloadPoint(sitename,zone,point):
-    
-    
     requester = request.args
     if (len(requester) == 0 or requester['start'] == 'Invalid Date' or requester['end'] == 'Invalid Date'):
         withbounds = False
