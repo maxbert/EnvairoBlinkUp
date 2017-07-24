@@ -63,13 +63,25 @@
 	</div>
       </div>
       <br class="space">
+
       <div class="row justify-content-center">
 	
-	  <div class="list-group sitelist">
-	    {% for site in zones %}
-	    <a href={{"../dashboard/" + sitename | replace(" ", "%20") + "/" +  site | replace(" ", "%20") }}  class="list-group-item list-group-item-action">{{site}}</a>
-	    {% endfor %}
+	<ul class="list-group sitelist">
 	  
+	  {% for site in zones %}
+	  <li class="list-group-item list-group-item-action">
+	    <div class="row" style="width:100%;">
+	      <div class="col-10">	
+		<a href={{"../dashboard/" + sitename | replace(" ", "%20") + "/" +  site | replace(" ", "%20") }} style="text-decoration:none; color:#18192b" >{{site}}</a>
+	      </div>
+		<div class="col-2">
+		  <h3 class="editer"> edit </h3>
+		  
+		</div>
+	      </div>
+	  </li>
+	  {% endfor %}
+	</div>
 	  </div>
 	
 	

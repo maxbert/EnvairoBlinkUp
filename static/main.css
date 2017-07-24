@@ -9,19 +9,7 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-.modal {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('/static/images/loading.gif') 
-                50% 50% 
-                no-repeat;
-}
+
 
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
@@ -558,13 +546,18 @@ ul {
     color:#e2e2e2;
 }
 
-.sitelist a{
+.sitelist li{
     background-color: #e2e2e2;
     color: #18192B; 
 }
 
 
-.sitelist a:hover{
+.sitelist li:hover{
+    background-color: #18192B; ;
+    color: #e2e2e2; 
+}
+
+.sitelist li a:hover{
     background-color: #18192B; ;
     color: #e2e2e2; 
 }
