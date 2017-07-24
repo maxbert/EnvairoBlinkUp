@@ -77,7 +77,6 @@ def downloadPoint(sitename,zone,point):
     
     
     requester = request.args
-    print len(requester)
     if (len(requester) == 0 or requester['start'] == 'Invalid Date' or requester['end'] == 'Invalid Date'):
         withbounds = False
     else:
@@ -93,7 +92,7 @@ def downloadPoint(sitename,zone,point):
         end = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
         
     apiCall = "https://app.envairo.com/api/zones/" + zone + "/" + zone + "." + point +"/" + start + "/" + end 
-    print(apiCall)
+    
     token = get_jwt_identity()
     token ="token " + token
     headers = {"Authorization":token}
@@ -137,7 +136,7 @@ def removePoint(sitename,zone,point):
 def getPoint(sitename,zone,point):
     
     requester = request.args
-    print len(requester)
+    
     if (len(requester) == 0 or requester['start'] == '' or requester['end'] == ''):
         withbounds = False
     else:
