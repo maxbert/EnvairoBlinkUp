@@ -40,7 +40,7 @@ body.loading .modal {
 
 .dash{
     font-weight:900;
-    font-size:6vh;
+    font-size:3vw;
     margin:0;
 }
 
@@ -557,10 +557,42 @@ ul {
     color: #e2e2e2; 
 }
 
-.sitelist li a:hover{
-    background-color: #18192B; ;
+.sitelist li:hover a{
     color: #e2e2e2; 
 }
+
+.sitelist li:hover .pencil{
+    background-image:url('/static/images/whitepencil.png');
+}
+
+.sitelist li .pencil{
+    background-image:url('/static/images/pencil.png');
+}
+
+
+
+.sitelinko:hover{
+    color: #e2e2e2;
+    text-decoration:none;
+}
+
+.sitelinko{
+    color: #18192b;
+    text-decoration:none;
+}
+
+.editer:hover{
+    cursor:pointer;
+}
+
+.sitelabel{
+    font-size:1vw;
+}
+
+.siteo{
+    font-size:2vw;
+}
+
 
 
 

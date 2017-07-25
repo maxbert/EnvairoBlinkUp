@@ -57,9 +57,13 @@
       <br class="space">
       <div class="row justify-content-center">
 	
-	<div class="list-group sitelist" style="width=100%">
+	<ul class="list-group sitelist" style="width=100%">
 	  {% for site in sites %}
-	  <a href={{"../zone/" + site | replace(" ", "%20") }}  class="list-group-item list-group-item-action">{{site}}</a>
+	   <a class="sitelinko" href={{"../zone/" + site | replace(" ", "%20") }}  >
+	  <li class="list-group-item list-group-item-action">
+	   {{site}}
+	  </li>
+	  </a>
 	  {% endfor %}
 	  
 	  

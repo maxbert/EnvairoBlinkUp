@@ -96,6 +96,7 @@ def downloadPoint(sitename,zone,point):
     headers = {"Authorization":token}
     r = requests.get(apiCall, headers=headers)
     listo = []
+    print r.json()
     for o in r.json():
         obj = {}
         time = o['date_time']
@@ -110,7 +111,7 @@ def downloadPoint(sitename,zone,point):
             listo.append(obj)
         else:
             
-            if timebutinpy > start and timebutinpy < end:
+            if timebutinpy > datetime.datetime.strptime(start,"%Y-%m-%d") and timebutinpy < datetime.datetime.strptime(end,"%Y-%m-%d"):
                 obj['date']=time
                 obj['value'] = val
                 listo.append(obj)

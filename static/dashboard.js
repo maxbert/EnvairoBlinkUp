@@ -1,7 +1,5 @@
 
 
-
-
 //date tools
 function formatDate(date) {
     date = new Date(date);
@@ -77,164 +75,171 @@ var drawgraph = function(pointype,state,start,end){
     //call the flask app to return the data
     
     var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref
-    listo = jQuery.ajax ({
+    jQuery.ajax ({
 	url: apiCall,
 	type: "GET",
 	data:{'start':start,'end':end},
 	
-	success: function(response) {return response;}
+	success: function(response) {castlist(response);}
     });
     //make values positive and make the date a real date object
-    function cast(d) {
-        d.date = new Date(d.date);
-        d.value = +d.value;
-        return d;
-    }
-
-    console.log(listo);
-    if (typeof(listo) == typeof('abc')){
-	window.location.replace('/login');
-    }
-    function within(d, start, end){
-	return(d >= start && d <=end);
-    }
-    //cast the list
-    var listo2 = [];
-    listo.forEach(function(e){listo2.push(cast(e))});
-    if (start && end){
-	var listo3 = [];
-	listo2.forEach(function(e){
-	    if(start && end){
-		if(within((e['date']),start,end)){
-		    listo3.push(e);
-	    }
-	    }
-	});
-	
-	listo=listo3;
-    }else{
-	listo=listo2;
-    }
-    //make a date list and a value list for x and y plotting
-    var dates = [];
-    listo.forEach(function(e){dates.push(e['date'])});
-    var vals = [];
-    listo.forEach(function(e){vals.push(e['value'])});
-    
-    if(state =='init'){
-	date=dates;
-    }
-    
-    val=vals;
-    
-    var maxdate = d3.max(dates);
-    var maxval = 0;
-    listo.forEach(function(e){
-	if(e['date'] == maxdate){
-	    
-	    maxval=e['value']}});
-    $('#dategot').html("as of " + formatDateWithTime( maxdate));
-    $('#num').html(maxval);
-    console.log(maxval);
-
-    //plotly code
-    var ploto = document.getElementById('plot');
-    if(state == 'refresh'){
-	function scalo(ploto){
-	    Plotly.animate(ploto,
-			   {layout:{
-			       xaxis: {range:[d3.min(dates).getTime(),d3.max(dates).getTime()]},
-			       yaxis: {range:[d3.min(vals),d3.max(vals)]},
-			   }},
-			   {transition: {
-			       duration: 0,
-			       easing: 'cubic-in-out'
-			   }});
+    function castlist(listo){
+	function cast(d) {
+            d.date = new Date(d.date);
+            d.value = +d.value;
+            return d;
 	}
-	var update = {x:[dates], y:[vals]};
 	
-	Plotly.update(ploto,update);
-	scalo(ploto);
-		       
-		       
-    }else{
-	Plotly.newPlot( ploto,
-			[{x: dates,
-			  y: vals,
-			  line: { color: "#18192b" }}],
+	console.log(listo);
+	if (typeof(listo) == typeof('abc')){
+	    window.location.replace('/login');
+	}
+	function within(d, start, end){
+	    return(d >= start && d <=end);
+	}
+	//cast the list
+	var listo2 = [];
+	listo.forEach(function(e){listo2.push(cast(e))});
+	if (start && end){
+	    var listo3 = [];
+	    listo2.forEach(function(e){
+		if(start && end){
+		    if(within((e['date']),start,end)){
+			listo3.push(e);
+		    }
+		}
+	    });
+	    
+	    listo=listo3;
+	}else{
+	    listo=listo2;
+	}
+	//make a date list and a value list for x and y plotting
+	var dates = [];
+	listo.forEach(function(e){dates.push(e['date'])});
+	var vals = [];
+	listo.forEach(function(e){vals.push(e['value'])});
+	
+	if(state =='init'){
+	    date=dates;
+	}
+	
+	val=vals;
+	
+	var maxdate = d3.max(dates);
+	var maxval = 0;
+	listo.forEach(function(e){
+	    if(e['date'] == maxdate){
+		
+		maxval=e['value']}});
+	$('#dategot').html("as of " + formatDateWithTime( maxdate));
+	$('#num').html(maxval);
+	console.log(maxval);
 
-			{margin: { t: 0 },
-			 paper_bgcolor:"transparent",
-			 plot_bgcolor:"transparent",
-			 xaxis: {
-			     autorange: true,
-			     showgrid: false,
-			     zeroline: false,
-			     showline: false,
-			     autotick: true,
-			     ticks: '',
-			     showticklabels: true,
-			     tickfont: {
-				 family: "montserrat, sans-serif",
-				 color:"#18192b"
-			     }
-			 },
-			 yaxis: {
-			     autorange: true,
-			     showgrid: false,
-			     zeroline: false,
-			     showline: false,
-			     autotick: true,
-			     ticks: '',
-			     showticklabels: true,
-			     tickfont: {
-				 family: "montserrat, sans-serif",
-				 color:"#18192b"
-			     }
-			 }},
+	//plotly code
+	var ploto = document.getElementById('plot');
+	if(state == 'refresh'){
+	    function scalo(ploto){
+		Plotly.animate(ploto,
+			       {layout:{
+				   xaxis: {range:[d3.min(dates).getTime(),d3.max(dates).getTime()]},
+				   yaxis: {range:[d3.min(vals),d3.max(vals)]},
+			       }},
+			       {transition: {
+				   duration: 0,
+				   easing: 'cubic-in-out'
+			       }});
+	    }
+	    var update = {x:[dates], y:[vals]};
+	    
+	    Plotly.update(ploto,update);
+	    scalo(ploto);
+	    
+	    
+	}else{
+	    Plotly.newPlot( ploto,
+			    [{x: dates,
+			      y: vals,
+			      line: { color: "#18192b" }}],
 
-			{displayModeBar: false,
-			 displaylogo: false,
-			 hoverinfo: "y",
-			 dragmode:'pan',
-			 scrollZoom:true
-			} );
+			    {margin: { t: 0 },
+			     paper_bgcolor:"transparent",
+			     plot_bgcolor:"transparent",
+			     xaxis: {
+				 autorange: true,
+				 showgrid: false,
+				 zeroline: false,
+				 showline: false,
+				 autotick: true,
+				 ticks: '',
+				 showticklabels: true,
+				 tickfont: {
+				     family: "montserrat, sans-serif",
+				     color:"#18192b"
+				 }
+			     },
+			     yaxis: {
+				 autorange: true,
+				 showgrid: false,
+				 zeroline: false,
+				 showline: false,
+				 autotick: true,
+				 ticks: '',
+				 showticklabels: true,
+				 tickfont: {
+				     family: "montserrat, sans-serif",
+				     color:"#18192b"
+				 }
+			     }},
+
+			    {displayModeBar: false,
+			     displaylogo: false,
+			     hoverinfo: "y",
+			     dragmode:'pan',
+			     scrollZoom:true
+			    } );
+	}
+	console.log("v40");
+	$(".modal").css("display","none")
     }
-    console.log("v40");
-    $(".modal").css("display","none")
-  
 }
 
 
 function seeessvee(pointype){
 
     $(".modal").css("display","block");
-    var path;
-    //call the flask app to return the data
-    var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref +"/download/"
-
-    var start = new Date($('#datepicker').val());
-    var end = addDays(new Date($('#datepicker2').val()),1);
-    if( !start || !end){
-	path = jQuery.ajax ({
-	    url: apiCall,
-	    type: "GET",
-	    success: function(response) {return response;}
-	});
-    }else{
-	path = jQuery.ajax ({
-	    url: apiCall,
-	    type: "GET",
-	    
-	    data: {'start':start,'end':end},
-	    success: function(response) { return response;}
-	});
-	console.log(path);
-	$('#downloadbutton').attr('action',path).submit();
+    function call(zone,pointype){var path;
+				 //call the flask app to return the data
+				 var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref +"/download/"
+				 
+				 var start = new Date($('#datepicker').val());
+				 var end = addDays(new Date($('#datepicker2').val()),1);
+				 if( !start || !end){
+				     jQuery.ajax ({
+					 url: apiCall,
+					 type: "GET",
+					 success: function(response) {download($('#downloadbutton'),response);}
+				     });
+				 }else{
+				     jQuery.ajax ({
+					 url: apiCall,
+					 type: "GET",
+					 
+					 data: {'start':start,'end':end},
+					 success: function(response) { download($('#downloadbutton'),response);}
+				     });
+				     
+				     
+				     
+				 }
+				}
+    call(zone,pointype);
     
+    function download(item,path){
+	item.attr('action',path).submit();
+	
+	$(".modal").css("display","none");
     }
-    $(".modal").css("display","none");
- 
 }
    
 
