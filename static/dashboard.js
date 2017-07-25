@@ -32,9 +32,18 @@ function addDays(date, days) {
 
 var width,height,footerh,headerh;
 //get dimentions for the graph space
-height = document.documentElement.clientHeight * 0.5;
-footerh = document.documentElement.clientHeight * 0.05;
-headerh = document.documentElement.clientHeight * 0.15;
+
+footerh = 90//$("footer").height();
+headerh = $('#header').height();
+navh = $('nav').height();
+
+
+console.log(navh);
+console.log(footerh);
+console.log(headerh);
+
+console.log('nav footer header');
+height = document.documentElement.clientHeight - footerh - headerh - navh - (document.documentElement.clientHeight * 0.05) - (document.documentElement.clientWidth * 0.02) - 40;
 width = document.documentElement.clientWidth * 0.8;
 //make the back button work
 var zone = $("#zone").html();//get zone name and site name, which are written into hidden divs on page load
@@ -43,8 +52,8 @@ $('#darrow').on('click',function(){window.location.replace('/sites/' + site)});
 
 //set the size of the plot div
 
-//$(".plot").css("height",height);
-
+$(".plote").css("height",height);
+console.log(height);
 
 var date=[];
 var val=[];
@@ -190,16 +199,20 @@ var drawgraph = function(pointype,state,start,end){
 				     family: "montserrat, sans-serif",
 				     color:"#18192b"
 				 }
-			     }},
+			     },
+			     autosize: false,
+			     width: $('.plotecol').width(),
+			     height: $('.plote').height() *0.8,
+			    },
 
 			    {displayModeBar: false,
 			     displaylogo: false,
 			     hoverinfo: "y",
 			     dragmode:'pan',
-			     scrollZoom:true
-			    } );
+			     scrollZoom:true,
+			        } );
 	}
-	console.log("v40");
+	console.log("v43");
 	$(".modal").css("display","none")
     }
 }
