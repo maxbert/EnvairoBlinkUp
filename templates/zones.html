@@ -16,9 +16,12 @@
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/main.css">
     <script src="/static/login.js" type="text/javascript"></script>
+    <script src="/static/zone.js" type="text/javascript"></script>
+    
     <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico" />
 
     <link rel="shortcut icon" href="/static/favicon.ico">
@@ -67,65 +70,89 @@
       <div class="row justify-content-center">
 	
 	<ul class="list-group sitelist">
-	  
+	  {% set count = 0 %}
 	  {% for site in zones %}
+	  {% set count = count + 1 %}
 	  <li class="list-group-item list-group-item-action">
 	    <div class="row" style="width:100%;">
 	      
-	      <a class="col-11 sitelinko" href={{"../dashboard/" + sitename | replace(" ", "%20") + "/" +  site | replace(" ", "%20") }} >
+	      <a class="col-11 sitelinko" href={{"../dashboard/" + sitename | replace(" ", "%20") + "/" +  site['e_id'] | replace(" ", "%20") }} >
 		<span style="width:100%">
-		  {{site}}
+		  {{site['dis']}}
 		</span>
 	      </a>
 
-		<a class="col-1" data-toggle="modal" data-target="#editzone">
+		<a class="col-1" data-toggle="modal" data-target= {{ "#editzone"+ loop.index|string }} >
 		   <img class="editer" src="/static/images/pencil.png" height="25px" width="25px">
 		  
 		</a>
 	      </div>
 	  </li>
-	  {% endfor %}
-	</div>
-	  </div>
-    <script> $(".list-group-item").on("mouseenter",function(e){$(e.target).children("div").children(".col-1").children(".editer").attr("src","/static/images/whitepencil.png");});
-      $(".list-group-item").on("mouseleave",function(e){$(e.target).children("div").children(".col-1").children(".editer").attr("src","/static/images/pencil.png");});</script>
-      </div>
-    </div>
 
-<div id="editzone" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+	  <div id= {{ "editzone" + loop.index|string }} class="modal fade" role="dialog">
+	    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Zone</h4>
-      </div>
-      <div class="modal-body">
-        <div id="form">
-	  <div class="row">
-	    <div class="col-md-6">
-	   
-		<div class="field">
-		  <label for="area" >Zone Area (Sq Ft)</label>
-		  <input name="area" type="text" id="area" style="border-radius:5px;"/>
+	      <!-- Modal content-->
+
+	      <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal">&times;</button>
+		  <h4 class="modal-title">Edit Zone</h4>
 		</div>
-	    </div>
-	    <div class="col-md-6"> 
-	      <div class="field">
-		<label for="vent">Vent Area (Sq Ft)</label>
-		<input name="vet" id="vent" type="text"  style="border-radius:5px;"/>
-	      </div>
-	    </div>
+		<div class="modal-body">
+		  <div id="form">
+		    <div class="row">
+		      <div class="col-md-6">
+			
+			<div class="field">
+			  <label for="area" >Zone Area (Sq Ft)</label>
+			  <input name="area" type="text" id={{"area" + loop.index|string }} placeholder={{site['area']}} style="border-radius:5px;"/>
+			</div>
+		      </div>
+		      <div class="col-md-6"> 
+			<div class="field">
+			  <label for="vent">Total Vent Area (Sq Ft)</label>
+			  <input name="vet" id={{"vent" + loop.index|string }} type="text" placeholder={{site['total_vent_area']}}  style="border-radius:5px;"/>
+			</div>
+		      </div>
+		    </div>
+		    <div class="row">
+		      <div class="col-md-6"> 
+			<div class="field">
+			  <label for="height">Zone Height (Ft)</label>
+			  <input name="height" id={{"height" + loop.index|string }} type="text" placeholder={{site['height']}}  style="border-radius:5px;"/>
+			</div>
+		      </div>
+		      <div class="col-md-6"> 
+			<div class="field">
+			  <label for="dis">Display Name</label>
+			  <input name="dis" id={{"dis" + loop.index|string }} type="text" placeholder={{site['dis']}}  style="border-radius:5px;"/>
+			</div>
+		      </div>
+		    </div>
+		    <div class="modal-footer">
+		      <script src="/static/zone.js" type="text/javascript"></script>
+		      <button type="button" onClick="updateZone({{loop.index}},'{{site['e_id']}}')" class="btn btn-default" >Submit</button>
+		    </div>
+		  </div>
 
+		</div>
+	      </div>
+	      
+	    </div>
 	  </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+	  {% endfor %}
+	  
+	  
+	  <script> $(".list-group-item").on("mouseenter",function(e){$(this).children("div").children(".col-1").children(".editer").attr("src","/static/images/whitepencil.png");});
+      $(".list-group-item").on("mouseleave",function(e){$(this).children("div").children(".col-1").children(".editer").attr("src","/static/images/pencil.png");});</script>
+
+ 
+
+    
       </div>
     </div>
 
-  </div>
-</div>
 
 
 

@@ -181,11 +181,26 @@ def zones(sitename):
     r = requests.get("https://app.envairo.com/api/zonelist/", headers=headers)
     sites = []
     r = r.json()
-    
+
     for site in r:
-        sites.append(site['e_id'])
-   
+        sit = {'area':site['area'],'e_id':site['e_id'],'total_vent_area':site['total_vent_area'],'height':site['height'], 'dis':site['dis']}
+        sites.append(sit);
+    
     return render_template("zones.html", sitename=sitename, zones=sites)
+
+
+@app.route("/zone/<zone>/update/",methods=["GET","POST"])
+@jwt_required
+def update(zone):
+    token = get_jwt_identity()
+    token ="token " + token
+    headers = {"Authorization":token}
+    data=request.json.get('e_id',None)
+    print(data)
+    r = requests.put("http://app.envairo.com/api/zones/" + zone + "/", headers=headers, data=data)
+    print(r.json())
+    return r.json()
+
 
 
 @app.route("/configure/", methods=["GET","POST"])
