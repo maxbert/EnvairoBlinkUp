@@ -25,7 +25,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY']="devtest"
 
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 
 jwt = JWTManager(app)
 
@@ -241,6 +241,14 @@ def auth():
 @app.route("/login/", methods=["GET","POST"])
 def login():
     return render_template("login.html", alert = "")
+
+
+@app.route("/logout/", methods=["GET"])
+@jwt_required
+def logout
+
+
+
 
 @app.errorhandler(401)
 def page_not_found(e):

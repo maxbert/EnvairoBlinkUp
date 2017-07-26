@@ -133,7 +133,6 @@ var drawgraph = function(pointype,state,start,end){
 	listo.forEach(function(e){dates.push(e['date'])});
 	var vals = [];
 	listo.forEach(function(e){vals.push(e['value'])});
-	
 	if(state =='init'){
 	    date=dates;
 	}
@@ -164,7 +163,7 @@ var drawgraph = function(pointype,state,start,end){
 				   easing: 'cubic-in-out'
 			       }});
 	    }
-	    var update = {x:[dates], y:[vals]};
+	    var update = {x:[dates], y:[vals], "connectgaps":false};
 	    
 	    Plotly.update(ploto,update);
 	    scalo(ploto);
@@ -172,13 +171,18 @@ var drawgraph = function(pointype,state,start,end){
 	    
 	}else{
 	    Plotly.newPlot( ploto,
-			    [{x: dates,
+			    [{mode:'scatter',
+			      "connectgaps": false,
+			      connectgaps: false,
+			      x: dates,
 			      y: vals,
-			      line: { color: "#18192b" }}],
+			       line: { color: "#18192b", connectgaps:false },
+			       connectgaps:false}],
 
-			    {margin: { t: 0 },
+			    {margin: { t: 0 }, 
 			     paper_bgcolor:"transparent",
 			     plot_bgcolor:"transparent",
+			     connectgaps:false,
 			     xaxis: {
 				 autorange: true,
 				 showgrid: false,
@@ -212,6 +216,7 @@ var drawgraph = function(pointype,state,start,end){
 
 			    {displayModeBar: false,
 			     displaylogo: false,
+			     connectgaps:false,
 			     hoverinfo: "y",
 			     dragmode:'pan',
 			     scrollZoom:true,

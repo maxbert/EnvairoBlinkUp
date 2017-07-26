@@ -24,9 +24,6 @@
     <link rel="shortcut icon" href="/static/favicon.ico">
   </head>
   <body>
-    
-    
-     
     <nav class="navbar sticky-top navbar-toggleable-sm navbar-inverse bg-faded py-3 py-lg-0" style="background-color:#18192B;">
       <button class="navbar-toggler navbar-toggler-right" style="height:60px;" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon" ></span>
@@ -37,7 +34,8 @@
       
       <div class=" collapse navbar-collapse justiy-content-end" id="navbarTogglerDemo02">
 	<ul class="navbar-nav mr-auto"></ul>
-	<ul class="nav navbar-nav justify-content-end align-items-start justify-content-top" style="margin:0;">
+
+	<ul class="nav navbar-nav justify-content-end align-items-start justify-content-top" style="margin:0; margin-top:30px;">
 	  <li class="nav-item align-self-start">
 	    <a class="nav-link active" href="/sites/" style="padding-bottom:25px;">Sites</a>
 	  </li>
@@ -45,9 +43,11 @@
 	    <a class="nav-link active py-md-35" href="/login/">Logout</a>
 	  </li>
 	</ul>
+
       </div>
 
     </nav>
+
     <div class="container-fluid" style="max-width:600px; width:100%;">
       <br class="space">
        <div class="row">
@@ -67,11 +67,11 @@
 	     </div>
 	     <div class="slides" id="one">
 	       <h1> Step 3: </h1> <br>
-	       <p> Skip this step If your Envario Node is flashing <b style="color:orange;">amber</b>.<br><br>If it is not flashing amber, click the  <button  class="btn-danger btn" style="height:40px; display:inline;" onclick="blinkUp('disconnect')">Reset Button</button>  and hold your device up to the screen, with the two front holes facing the target box.</p>
+	       <p> Skip this step if your Envairo Node is flashing <b style="color:orange;">amber</b>.<br><br>If it is not flashing amber, click the  <button  class="btn-danger btn" style="height:40px; display:inline;" onclick="blinkUp('disconnect')">Reset Button</button>  and hold your device up to the screen, with the light facing the target box.</p>
 	       </div>
 	     <div class="slides" id="four">
 	       <h1> Step 4: </h1> <br>
-	       <p> Enter your network information below. Make sure you enter the Network name and password correctly.</p>
+	       <p> Enter your network information below.</p>
 	       <div id="form">
 		 <div class="row">
 		   <div class="col-md-6">
@@ -101,22 +101,22 @@
 		 <div class="col-3"></div>
 		 <div class="col-6">
 		   <center>
-		     <button id="networknext" class="btn btn-block btn-primary" onClick="increment(1)">next</button></center>
+		     <button id="networknext" style="font-size:125%;" class="btn btn-block btn-primary" onClick="increment(1)"><b>Next</b></button></center>
 		 </div>
 	       </div>
 	       
 	     </div>
 	     <div class="slides" id="four">
 	       <h1> Step 5: </h1> <br>
-	       <p> Click Begin Connection and hold your device to the screen, making sure the three dots on the front of your Envairo Node are all within the target box. Do not move your Envairo Node away from the screen until the flashing is complete. </p>
+	       <p> Click Begin Connection and hold your device to the screen, making sure the light on the front of your Envairo Node is within the target box. Do not move your Envairo Node away from the screen until the flashing is complete. </p>
 	       <div class="row">
 		 
 		 <div class="col-md-6">
-		   <button  class="btn-info btn-block" onclick="blinkUp('production')">Begin Connection</button>
+		   <button  class="btn btn-primary btn-block" style="font-size:125%;" onclick="blinkUp('production')"><b>Begin Connection</b></button>
 		 </div>
 		 <p> </p>
 		 <div class="col-md-6">
-		   <button class="btn-success btn-block" onclick="troubleshoot()"> Troubleshooting </button>
+		   <button class="btn btn-success btn-warning" style="font-size:125%;" onclick="troubleshoot()"><b> Troubleshooting </b></button>
 		 </div>
 	       </div>
 	       <br class="clear">
@@ -152,19 +152,12 @@
 	    <!-- For Flashing -->
 	    <canvas id="BU-canvas" class="canvas" moz-opaque></canvas>
 	    
-	    <img id="imp-credit" alt="Powered by Electric Imp" src="/static/images/countdownTextBlack.svg" height="40px"></img>
+	    <img id="imp-credit" alt="Powered by Electric Imp" src="/static/images/countdownTextBlack.svg" style="height:20px"></img>
 	  </div>
        
        </div>
       </div>
 </div>
-<br class="clear">
-<br class="clear">
-      <footer>
-	<p>Featherlight lightbox Copyright (c) 2014 Noel Bossart, http://noelboss.com </p>
-	<p> AnimationFrame Copyright (c) 2008-2016 Oleg Slobodskoi </p>
-	<p> The Electric Imp JavaScript BlinkUp librarybeta contains software copyright © 2015-17, Electric Imp, Inc. </p>
-      </footer>
-      <script src="/static/ui.js" type="text/javascript"></script>
+<script src="/static/ui.js" type="text/javascript"></script>
   </body>
 </html>

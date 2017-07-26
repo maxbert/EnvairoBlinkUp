@@ -30,6 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+     <meta http-equiv="refresh" content="300">
   </head>
   <body class="sitesbod">
     
@@ -54,7 +55,8 @@
 	  
       <div class=" collapse navbar-collapse justiy-content-end" id="navbarTogglerDemo02">
 	<ul class="navbar-nav mr-auto"></ul>
-	<ul class="nav navbar-nav justify-content-end align-items-start justify-content-top" style="margin:0;">
+
+	<ul class="nav navbar-nav justify-content-end align-items-start justify-content-top" style="margin:0; margin-top:30px;">
 	  <li class="nav-item align-self-start">
 	    <a class="nav-link active" href="/configure/" style="padding-bottom:25px;">Configure Node</a>
 	  </li>
@@ -74,11 +76,9 @@
     
     <div class="container-fluid">
       <div class="row justify-content-left " style="background-color:#18192B; color:white; padding:1vw;" id="header">
-	<div class="col-3" style="overflow:hidden;">
+	<div class="col-5" style="overflow:hidden;">
 	  <h1 class="dash" style="overflow:hidden;"> {{zonedis}} </h1>
 	  <a href="/zone/{{sitename}}" style="color:#e2e2e2;" ><h4 class="siteo" style="overflow:hidden;"> {{sitename}} </h4></a>
-	</div>
-	<div class="col-2">
 	</div>
 	<div class="col-3">
 	  <center>
@@ -103,8 +103,21 @@
 	
 	
 	<div class="plotecol col-12 col-sm-12 col-md-10 offset-md-1">
-	  <br>
-	  <center><h1 style="font-size:5vh;"><b id="pointtype">  </b></center>
+	  
+	  <div class="row justfy-content-center">
+	    <div class="col-5"></div>
+	    <div class="col-2">
+	      <div class="dropdown">
+		<button style="border:0;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  <h1 style="font-size:5vh; display:inline;" id="pointtype">  </h1>
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+		  <button class="dropdown-item" style="border-radius:0;" type="button" onClick="drawgraph({name:'Fresh Air Score',apiref:'room.co2.1'}, 'init');">Fresh Air Score</button>
+		  <button class="dropdown-item" style="border-radius:0;" type="button" onClick="drawgraph({name:'Occupancy',apiref:'room.co2.1'}, 'init');">Occupancy</button>
+		</div>
+	      </div>
+	    </div>
+	  </div>
 	  <br>
 	  <div class="plot" id="plot">
 	  </div>
@@ -142,17 +155,17 @@
 		); </script>
 	    </div>
 	    <div class="col-1" style="margin-right:4px; padding:0;">
-	      <button class="btn btn-success btn-block" style=" margin-top:3px; font-size:10; height:40px; text-align:center; padding:0;" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"><center>go</center></button>
+	      <button class="btn btn-primary btn-block" style=" margin-top:3px; font-size:10; height:40px; text-align:center; padding:0;" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"><center>Go</center></button>
 	    </div>
 	  </div>
 	</div>
 	<div class="col-lg-4 col-md-2"></div>
 	<div class="col-2">
-	  <button style="white-space:normal;" class="btn" onClick="Plotly.downloadImage($('#plot'), {format: 'png', filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
+	  <button style="white-space:normal; background-color:#efefef" class="btn" onClick="Plotly.downloadImage($('#plot'), {format: 'png', filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
 	</div>
 	<div class="col-2">
 	  <form id="downloadbutton">
-	    <button style="white-space:normal;" onClick="seeessvee(active)" class="btn">Download Data as CSV</button>
+	    <button style="white-space:normal;  background-color:#efefef" onClick="seeessvee(active)" class="btn">Download Data as CSV</button>
 	  </form>
 	</div>
 	

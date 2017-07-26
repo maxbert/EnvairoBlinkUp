@@ -79,7 +79,7 @@ function troubleshoot() {
     otherClose: '#lightbox-close',
    
   };
-var text = "<div id='trouble'><h1>Troubleshooting Tips</h1></center><p><ul><li>Turn your monitor or phone screen to full brightness</li><br><li>Make sure to align your Envairo node correctly</li><br><li>Do not move the Envairo node away from the screen for the duration of the connection process</li><br><li>Try to minimize ambient light</li></ul></p></div>";
+var text = "<div id='trouble'><center><h1>Troubleshooting Tips</h1></center><p><ul><li>Turn your monitor or phone screen to full brightness</li><br><li>Make sure to align your Envairo node correctly</li><br><li>Do not move the Envairo node away from the screen for the duration of the connection process</li><br><li>Try to minimize ambient light</li></ul></p></div>";
     
   openLightboxSingleton(blinkUpTemplate.clone(), configuration);
 
