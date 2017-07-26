@@ -95,11 +95,32 @@ var text = "<div id='trouble'><h1>Troubleshooting Tips</h1></center><p><ul><li>T
 
 document.getElementById("rarrow").addEventListener('click',function(e){increment(1)});
 document.getElementById("larrow").addEventListener('click',function(e){increment(-1)});
+
+
+function disablenow(){
+    $('#rarrow').css('visibility','hidden');
+    $('#networknext').attr('disabled','disbabled');
+    checkiffilled();
+    function checkiffilled(){
+	var filledout = false
+	if($("#password").val() != '' && ($("#ssid").val() != '')){
+	    filledout = true;
+	}
+	if(filledout){
+	    $('#rarrow').css('visibility','visible');
+	    $('#networknext').removeAttr('disabled');
+	}
+    }
+    $('input').keyup(checkiffilled)
+}
+
 var step = 1;
 function increment(n){
     step += n;
     slidesup(step);
 }
+
+
 
 function slidesup(n){
     var i;
@@ -121,6 +142,9 @@ function slidesup(n){
 	slides[i].style.display = "none";
     };
     slides[n - 1].style.display = "block";
+    if( step == 5){
+	disablenow();
+    }
 };
 
 slidesup(step);

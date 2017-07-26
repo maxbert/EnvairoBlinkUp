@@ -67,9 +67,8 @@
 	     </div>
 	     <div class="slides" id="one">
 	       <h1> Step 3: </h1> <br>
-	       <p> Skip this step If your Envario Node is flashing <b style="color:orange;">amber</b>. Click the red button labeled  Reset Device and hold your device up to the screen, with the two front holes facing the target box.</p>
-	       <button  class="btn-danger btn-block" onclick="blinkUp('disconnect')">Reset Device</button>
-	     </div>
+	       <p> Skip this step If your Envario Node is flashing <b style="color:orange;">amber</b>.<br><br>If it is not flashing amber, click the  <button  class="btn-danger btn" style="height:40px; display:inline;" onclick="blinkUp('disconnect')">Reset Button</button>  and hold your device up to the screen, with the two front holes facing the target box.</p>
+	       </div>
 	     <div class="slides" id="four">
 	       <h1> Step 4: </h1> <br>
 	       <p> Enter your network information below. Make sure you enter the Network name and password correctly.</p>
@@ -78,7 +77,7 @@
 		   <div class="col-md-6">
 		     <div class="field">
 		       <label for="ssid">Network Name</label>
-		       <input name="ssid" type="text" id="ssid" placeholder="SSID" style="height:38px"/>
+		       <input name="ssid" type="text" id="ssid" style="height:38px"/>
 		     </div>
 		   </div>
 		   <div class="col-md-6"> 
@@ -86,7 +85,7 @@
 		       <label for="password">Password</label>
 		       <div class="input-group">
 			 
-			 <input name="password" id="password" type="password" placeholder="password" style="height:38px"/>
+			 <input name="password" id="password" type="password" style="height:38px"/>
 
 			 <span class="input-group-btn">
 			   <button onClick="showpass()" style="border-color: #18192b;font-weight:900; background-color: #18192b; color: #969696; height:38px; color=" class="btn btn-success" id="showpassword" type="button">Show</button>
@@ -95,8 +94,17 @@
 		     </div>
 		   </div>
 		   <br class="clear" />
+
 		 </div>
 	       </div>
+	       <div class="row">
+		 <div class="col-3"></div>
+		 <div class="col-6">
+		   <center>
+		     <button id="networknext" class="btn btn-block btn-primary" onClick="increment(1)">next</button></center>
+		 </div>
+	       </div>
+	       
 	     </div>
 	     <div class="slides" id="four">
 	       <h1> Step 5: </h1> <br>
@@ -144,7 +152,7 @@
 	    <!-- For Flashing -->
 	    <canvas id="BU-canvas" class="canvas" moz-opaque></canvas>
 	    
-	    <img id="imp-credit" alt="Powered by Electric Imp" src="/static/images/countdownTextBlack.svg"></img>
+	    <img id="imp-credit" alt="Powered by Electric Imp" src="/static/images/countdownTextBlack.svg" height="40px"></img>
 	  </div>
        
        </div>
