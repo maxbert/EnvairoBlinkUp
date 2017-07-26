@@ -123,6 +123,11 @@ var drawgraph = function(pointype,state,start,end){
 	}else{
 	    listo=listo2;
 	}
+	if(listo.length == 0){
+	    alert("no data available for that time");
+	    $(".modal").css("display","none")
+	    return;
+	}
 	//make a date list and a value list for x and y plotting
 	var dates = [];
 	listo.forEach(function(e){dates.push(e['date'])});
