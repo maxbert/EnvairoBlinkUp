@@ -317,7 +317,7 @@ function getDeviceStatus (configId) {
 	setInstruction('Device is connected');
 	
         showResult("<h2> Successfully connected Envairo Node </h2>", true);
-	window.location.replace("http://envairo.com");
+	window.location.replace("/sites");
     }
   }
 		      );

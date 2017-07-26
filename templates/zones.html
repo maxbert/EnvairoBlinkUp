@@ -76,7 +76,7 @@
 	  <li class="list-group-item list-group-item-action">
 	    <div class="row" style="width:100%;">
 	      
-	      <a class="col-11 sitelinko" href={{"../dashboard/" + sitename | replace(" ", "%20") + "/" +  site['e_id'] | replace(" ", "%20") }} >
+	      <a class="col-10 col-sm-11 sitelinko" href={{"../dashboard/" + sitename | replace(" ", "%20") + "/" +  site['e_id'] | replace(" ", "%20") }} >
 		<span style="width:100%">
 		  {{site['dis']}}
 		</span>
@@ -102,16 +102,16 @@
 		<div class="modal-body">
 		  <div id="form">
 		    <div class="row">
-		      <div class="col-md-6">
+		      <div class="col-md-5">
 			
 			<div class="field">
 			  <label for="area" >Zone Area (Sq Ft)</label>
 			  <input name="area" type="text" id={{"area" + loop.index|string }} placeholder={{site['area']}} style="border-radius:5px;"/>
 			</div>
 		      </div>
-		      <div class="col-md-6"> 
+		      <div class="col-md-7"> 
 			<div class="field">
-			  <label for="vent">Total Vent Area (Sq Ft)</label>
+			  <label for="vent">Total Vent Area (Sq Ft) <g title="the sum of all the vent areas in the room"  stye="border-radius:15px; border:2px solid red;"> ? </g></label>
 			  <input name="vet" id={{"vent" + loop.index|string }} type="text" placeholder={{site['total_vent_area']}}  style="border-radius:5px;"/>
 			</div>
 		      </div>
@@ -126,7 +126,7 @@
 		      <div class="col-md-6"> 
 			<div class="field">
 			  <label for="dis">Display Name</label>
-			  <input name="dis" id={{"dis" + loop.index|string }} type="text" placeholder={{site['dis']}}  style="border-radius:5px;"/>
+			  <input name="dis" id="{{"dis" + loop.index|string }}" type="text" placeholder="{{site['dis']}}"  style="border-radius:5px;"/>
 			</div>
 		      </div>
 		    </div>

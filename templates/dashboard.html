@@ -75,7 +75,7 @@
     <div class="container-fluid">
       <div class="row justify-content-left " style="background-color:#18192B; color:white; padding:1vw;" id="header">
 	<div class="col-3" style="overflow:hidden;">
-	  <h1 class="dash" style="overflow:hidden;"> {{zone}} </h1>
+	  <h1 class="dash" style="overflow:hidden;"> {{zonedis}} </h1>
 	  <a href="/zone/{{sitename}}" style="color:#e2e2e2;" ><h4 class="siteo" style="overflow:hidden;"> {{sitename}} </h4></a>
 	</div>
 	<div class="col-2">
@@ -118,9 +118,9 @@
 	<div class="col-lg-4 col-md-6 col-12">
 	  <div class="row" style="padding-top:3%"> 
 	    
-	    <div class="col-3" style="margin:0; padding-top:1%">
+	    <div class="col-3" style="margin:0; margin-left:10px; padding-top:1%">
 	      <p>
-		showing data from
+		Show data from
 	      </p>
 	    </div>
 	    <div class="col-3" style="margin:0; padding:0">
@@ -141,8 +141,8 @@
 		{clearBtn :true}
 		); </script>
 	    </div>
-	    <div class="col-1">
-	      <button class="btn btn-primary" style="height:40px; margin-top:3px" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"> Apply</button>
+	    <div class="col-1" style="margin-right:4px; padding:0;">
+	      <button class="btn btn-success btn-block" style=" margin-top:3px; font-size:10; height:40px; text-align:center; padding:0;" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"><center>go</center></button>
 	    </div>
 	  </div>
 	</div>

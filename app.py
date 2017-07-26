@@ -51,11 +51,12 @@ def dashboard(sitename,zone):
     height = ""
     for zoner in r:
         if zoner['e_id'] == zone:
+            dis = zoner['dis']
             area = int(zoner['area'])
             height = int(zoner['height'])
 
         
-    return render_template("dashboard.html",sitename=sitename,zone=zone,area=area,height=height)
+    return render_template("dashboard.html",sitename=sitename,zone=zone,area=area,height=height, zonedis=dis)
 
 @app.route("/sites/")
 @jwt_required
@@ -189,18 +190,28 @@ def zones(sitename):
     return render_template("zones.html", sitename=sitename, zones=sites)
 
 
-@app.route("/zone/<zone>/update/",methods=["GET","POST"])
+@app.route("/zone/<zone>/update/",methods=["GET"])
 @jwt_required
-def update(zone):
+def update(zone):    
     token = get_jwt_identity()
     token ="token " + token
     headers = {"Authorization":token}
-    data=request.json.get('e_id',None)
-    print(data)
-    r = requests.put("http://app.envairo.com/api/zones/" + zone + "/", headers=headers, data=data)
-    print(r.json())
-    return r.json()
-
+    e_id = str(request.args.get('e_id'))
+    dis = str(request.args.get('dis'))
+    total_vent_area = str(request.args.get('total_vent_area'))
+    area = str(request.args.get('area'))
+    height = str(request.args.get('height'))
+    data = {'dis':dis,'e_id':e_id, 'height':height, 'total_vent_area':total_vent_area,'area':area}
+    r = requests.put("https://app.envairo.com/api/zones/" + zone + "/",data=data, headers=headers)
+    sites = []
+    r = r.json()
+    error = True
+    for item in r:
+        if item == 'e_id':
+            error = False
+    r['error']=error
+    return jsonify(r)
+    
 
 
 @app.route("/configure/", methods=["GET","POST"])
