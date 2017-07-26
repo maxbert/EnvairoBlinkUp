@@ -1,0 +1,29 @@
+function updateZone(e,sitename){
+    var dis = $('#dis' + e).val();
+    var area = $('#area' + e).val();
+    var height = $('#height' + e).val();
+    var total_vent_area = $('#vent' + e).val();
+    var data = {};
+    console.log(dis);
+    if(dis != ""){
+	data['dis'] = dis;
+    }
+    if(area != ""){
+	data['area'] = area;
+    }
+    if(height != ""){
+	data['height'] = height;
+    }
+    if(total_vent_area != ""){
+	data['total_vent_area'] = total_vent_area;
+    }
+    data['e_id']=sitename;
+	
+    console.log(data);
+    jQuery.ajax ({
+ 	url: sitename + "/update/",
+	type: "GET",
+	data: data,
+	success: function(response) {alert(response)}
+    });
+}
