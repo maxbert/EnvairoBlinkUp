@@ -1,0 +1,42 @@
+version: "2"
+
+services:
+  web:
+    build: ${PEOPLECOUNT_WEB_ROOT}
+    command: bash -c "./manage.py migrate && gunicorn peoplecount.wsgi -b 0.0.0.0:8001"
+    ports:
+      - ${PORT_WEB_1}
+      - ${PORT_WEB_2}
+    volumes:
+      - ${DATA_VOLUME_WEB_1}
+    environment:
+      - LOCKDOWN_PWD=${LOCKDOWN_PWD}
+      - VIRTUAL_HOST=${VIRTUAL_HOST_WEB}
+      - VIRTUAL_PORT=8001
+
+  letsencrypt-nginx-proxy:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx-proxy
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - ${DATA_VOLUME_LETSENCRYPTNGINXPROXY_1}
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - ${PORT_NGINXPROXY_1}
+      - ${PORT_NGINXPROXY_2}
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+      - ${DATA_VOLUME_NGINXPROXY_1}
+    links:
+      - web
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST_NGINXPROXY}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL_NGINXPROXY}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST_NGINXPROXY}
