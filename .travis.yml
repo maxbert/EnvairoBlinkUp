@@ -4,21 +4,15 @@ services:
 env:
 - DOCKER_COMPOSE_VERSION=1.11.2 ENV_CICD=True
 script:
-- sudo /etc/init.d/mysql stop
 - "./deployment/bin/compose.sh build"
 - "./deployment/bin/compose.sh up"
 - echo "Waiting for services to start..."
 - sleep 10
-- docker logs peoplecount_web_1
-- echo "Checking health..."
-- docker exec -it peoplecount_mysql_1 mysql -uroot -ppeoplecount -hmysql -e "CREATE
-  DATABASE IF NOT EXISTS test_peoplecount; GRANT ALL PRIVILEGES ON test_peoplecount.*
-  TO 'peoplecount'@'%';"
-- docker exec -it peoplecount_web_1 python ./manage.py test --noinput
+- docker logs dashboard_web_1
+
 addons:
   ssh_known_hosts:
-  - app.envairo.com
-  - staging.envairo.com
+  - dashboard.envairo.com
 before_install:
 - openssl aes-256-cbc -K $encrypted_d1dfef12d92f_key -iv $encrypted_d1dfef12d92f_iv
   -in deploy_rsa.enc -out ./deployment/config/deploy_rsa -d
@@ -30,69 +24,39 @@ before_install:
 deploy:
 - provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ ec2-user@app.envairo.com:/code
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ ec2-user@dashboard.envairo.com:/code
   on:
     branch: master
 - provider: script
   skip_cleanup: true
-  script: ssh ec2-user@app.envairo.com "cd /code && ENV_PROD=True ./deployment/bin/compose.sh
+  script: ssh ec2-user@dashboard.envairo.com "cd /code && ENV_PROD=True ./deployment/bin/compose.sh
     build"
   on:
     branch: master
 - provider: script
   skip_cleanup: true
-  script: ssh ec2-user@app.envairo.com "cd /code && ENV_PROD=True ./deployment/bin/compose.sh
+  script: ssh ec2-user@dashboard.envairo.com "cd /code && ENV_PROD=True ./deployment/bin/compose.sh
     up"
   on:
     branch: master
 - provider: script
   skip_cleanup: true
-  script: ssh ec2-user@app.envairo.com "docker run -v /var/run/docker.sock:/var/run/docker.sock
+  script: ssh ec2-user@dashboard.envairo.com "docker run -v /var/run/docker.sock:/var/run/docker.sock
     -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes --dry-run"
   on:
     branch: master
 - provider: script
   skip_cleanup: true
-  script: ssh ec2-user@app.envairo.com "docker rmi $(docker images -q -f dangling=true)
+  script: ssh ec2-user@dashboard.envairo.com "docker rmi $(docker images -q -f dangling=true)
     || echo 'Cleanup not needed...'"
   on:
     branch: master
 - provider: script
   skip_cleanup: true
-  script: ssh ec2-user@app.envairo.com "docker system prune -f"
+  script: ssh ec2-user@dashboard.envairo.com "docker system prune -f"
   on:
     branch: master
 - provider: script
   skip_cleanup: true
   script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ ec2-user@staging.envairo.com:/code
-  on:
-    branch: staging
-- provider: script
-  skip_cleanup: true
-  script: ssh ec2-user@staging.envairo.com "cd /code && ENV_STAGING=True ./deployment/bin/compose.sh
-    build"
-  on:
-    branch: staging
-- provider: script
-  skip_cleanup: true
-  script: ssh ec2-user@staging.envairo.com "cd /code && ENV_STAGING=True ./deployment/bin/compose.sh
-    up"
-  on:
-    branch: staging
-- provider: script
-  skip_cleanup: true
-  script: ssh ec2-user@staging.envairo.com "docker run -v /var/run/docker.sock:/var/run/docker.sock
-    -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes --dry-run"
-  on:
-    branch: staging
-- provider: script
-  skip_cleanup: true
-  script: ssh ec2-user@staging.envairo.com "docker rmi $(docker images -q -f dangling=true)
-    || echo 'Cleanup not needed...'"
-  on:
-    branch: staging
-- provider: script
-  skip_cleanup: true
-  script: ssh ec2-user@staging.envairo.com "docker system prune -f"
-  on:
-    branch: staging
+ 

@@ -10,18 +10,6 @@ function set_env() {
 	    echo "Setting prod environment..."
 	    COMPOSE_FILE=./deployment/config/docker-compose.yml
 	    source ./deployment/config/prod.env
-    elif [ -n "${ENV_STAGING+set}" ]; then
-	    echo "Setting staging environment..."
-	    COMPOSE_FILE=./deployment/config/docker-compose.dev.yml
-	    source ./deployment/config/staging.env
-    elif [ -n "${ENV_CICD+set}" ]; then
-	    echo "Setting CI/CD environment..."
-	    COMPOSE_FILE=./deployment/config/docker-compose.dev.yml
-	    source ./deployment/config/cicd.env
-    else
-	    echo "Setting dev environment..."
-	    COMPOSE_FILE=./deployment/config/docker-compose.dev.yml
-	    source ./deployment/config/dev.env
     fi
 }
 
@@ -48,7 +36,7 @@ function docker_rm () {
 
 function docker_test () {
     set_env
-    docker-compose -f $COMPOSE_FILE exec web python ./manage.py test --noinput
+    docker-compose -f $COMPOSE_FILE exec web python app .py 
 }
 
 case "$1" in
@@ -69,16 +57,16 @@ case "$1" in
 	docker_rm
 	;;
     "test")
-	docker_test
+	#docker_test
 	;;
     "web")
 	shift;
 	case "$1" in
 	    "runserver")
-		docker exec -it peoplecount_web_1 python manage.py runserver 0.0.0.0:8000
+		docker exec -it dashboard_web_1 python app.py 
 		;;
 	    "bash")
-		docker exec -it peoplecount_web_1 bash
+		docker exec -it dashboard_web_1 bash
 		;;
 	    *)
 		echo "Usage: $(basename $0) web [runserver | bash]"

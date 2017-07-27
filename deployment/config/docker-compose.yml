@@ -3,7 +3,7 @@ version: "2"
 services:
   web:
     build: ${PEOPLECOUNT_WEB_ROOT}
-    command: bash -c "./manage.py migrate && gunicorn peoplecount.wsgi -b 0.0.0.0:8001"
+    command: bash -c "gunicorn app:app"
     ports:
       - ${PORT_WEB_1}
       - ${PORT_WEB_2}
@@ -12,7 +12,7 @@ services:
     environment:
       - LOCKDOWN_PWD=${LOCKDOWN_PWD}
       - VIRTUAL_HOST=${VIRTUAL_HOST_WEB}
-      - VIRTUAL_PORT=8001
+      - VIRTUAL_PORT=5001
 
   letsencrypt-nginx-proxy:
     image: jrcs/letsencrypt-nginx-proxy-companion
