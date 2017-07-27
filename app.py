@@ -226,6 +226,7 @@ def key():
 
 @app.route("/auth", methods=["GET","POST"])
 def auth():
+    #test
     username = request.json.get('username', None)
     password = request.json.get('password', None)
     r = requests.post("https://app.envairo.com/api/api-token-auth/",data={"username":username,"password":password})
