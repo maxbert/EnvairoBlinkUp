@@ -1,0 +1,28 @@
+* Deployment
+  
+** Setup
+
+Bootstrapping the system is fairly straightforward and mostly automated.
+
+*Steps*
+
+- Create a medium or appropriately sized AWS EC2 server of the Amazon AMI Linux variety
+- Add your public SSH key, i.e., =./ssh/id_rsa.pub= to the remote server via =~/.ssh/authorized_hosts=
+- Create a new DNS A name entry pointing at the new sever IP address
+- Bootstrap the server by running =./deployment/bin/bootstrap <user> <host>=
+- Setup Travis deploy keys by executing =./deployment/bin/setup_deploy_keys.sh=
+- Save the private deploy keys in a safe place but *NOT* in this project repository
+- Update the `.travis.yml` file with directives for a new deployment locations if necessary
+ 
+Note: All passwords and private security keys are stored in [[https://www.lastpass.com][LastPass]].
+
+*Travis CI/CD*
+
+Travis is used for building the service images. If the services images are successfully built, new code is deployed according to its host.
+
+** Testing
+  
+*Development*
+
+To run Django unit tests locally, simply run =./deployment/bin/compose.sh test=. This test suite is used as a sanity check after Travis builds the application. If tests pass, code is deployed to the according environment, e.g., production or staging.
+
