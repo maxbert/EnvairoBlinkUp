@@ -243,13 +243,6 @@ def login():
     return render_template("login.html", alert = "")
 
 
-@app.route("/logout/", methods=["GET"])
-@jwt_required
-def logout
-
-
-
-
 @app.errorhandler(401)
 def page_not_found(e):
     return render_template('401.html'), 401
