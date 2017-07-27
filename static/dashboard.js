@@ -14,9 +14,9 @@ function formatDateWithTime(date) {
     date = new Date(date);
     var day = date.getDate();
     var monthIndex = date.getMonth() +1;
-    var hours = date.getHours() % 12
-    if(hours == 0){hours = 12;}
-    var minutes = date.getMinutes()
+    var hours = date.getHours() % 12;
+    if(hours == 0){hours = 12;};
+    var minutes = (date.getMinutes()<10?'0':'') + date.getMinutes();
 
     return hours + ":" + minutes + " on " + monthIndex+ '/' + day;
 }
@@ -24,6 +24,7 @@ function formatDateWithTime(date) {
 function addDays(date, days) {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
+
     return result;
 }
 
@@ -38,11 +39,11 @@ headerh = $('#header').height();
 navh = $('nav').height();
 
 
-console.log(navh);
-console.log(footerh);
-console.log(headerh);
 
-console.log('nav footer header');
+
+
+
+
 height = document.documentElement.clientHeight - footerh - headerh - navh - (document.documentElement.clientHeight * 0.05) - (document.documentElement.clientWidth * 0.02) - 40;
 width = document.documentElement.clientWidth * 0.8;
 //make the back button work
@@ -53,7 +54,7 @@ $('#darrow').on('click',function(){window.location.replace('/sites/' + site)});
 //set the size of the plot div
 
 $(".plote").css("height",height);
-console.log(height);
+
 
 var date=[];
 var val=[];
@@ -63,7 +64,7 @@ var val=[];
 var active = "none"
 var drawgraph = function(pointype,state,start,end){
     $(".modal").css("display","block");
-    console.log($("html"))
+   
     if( active == pointype && state != 'refresh'){
 	return;
     }
@@ -76,7 +77,7 @@ var drawgraph = function(pointype,state,start,end){
 	var start = "";
 	var end = "";
     }
-    
+   
     active = pointype;
     var listo = [];
     $("#pointtype").html(pointype.name);
@@ -99,7 +100,7 @@ var drawgraph = function(pointype,state,start,end){
             return d;
 	}
 	
-	console.log(listo);
+
 	if (typeof(listo) == typeof('abc')){
 	    window.location.replace('/login');
 	}
@@ -136,18 +137,21 @@ var drawgraph = function(pointype,state,start,end){
 	if(state =='init'){
 	    date=dates;
 	}
-	
+
+	console.log(dates);
+	console.log(vals);
 	val=vals;
-	
-	var maxdate = d3.max(dates);
-	var maxval = 0;
-	listo.forEach(function(e){
-	    if(e['date'] == maxdate){
-		
-		maxval=e['value']}});
-	$('#dategot').html("as of " + formatDateWithTime( maxdate));
-	$('#num').html(maxval);
-	console.log(maxval);
+	if(state == 'init'){
+	    var maxdate = d3.max(dates);
+	    var maxval = 0;
+	    listo.forEach(function(e){
+		if(e['date'] == maxdate){
+		    
+		    maxval=e['value']}});
+	    $('#dategot').html("as of " + formatDateWithTime( maxdate));
+	    $('#num').html(maxval);
+	    
+	}
 
 	//plotly code
 	var ploto = document.getElementById('plot');
@@ -220,9 +224,27 @@ var drawgraph = function(pointype,state,start,end){
 			     hoverinfo: "y",
 			     dragmode:'pan',
 			     scrollZoom:true,
-			        } );
+			    } );
 	}
-	console.log("v43");
+
+	$('#downloadpng').on('click', function(){
+	    console.log('working?');
+	    Plotly.update( ploto,{},
+			    {margin: { t: 0 }, 
+			     paper_bgcolor:"white",
+			     plot_bgcolor:"white",
+			    } ).then(function(){
+				Plotly.downloadImage(ploto, {
+				    format: 'png',
+				    height: 1080,
+				    width: 1920,
+				    filename: active.name
+				})
+			    })
+	});
+				    
+				   
+
 	$(".modal").css("display","none")
     }
 }
@@ -236,7 +258,7 @@ function seeessvee(pointype){
 				 var apiCall = "/dashboard/" + zone + "/" + zone + "/" + pointype.apiref +"/download/"
 				 
 				 var start = new Date($('#datepicker').val());
-				 var end = addDays(new Date($('#datepicker2').val()),1);
+				 var end = addDays(new Date($('#datepicker2').val()),1.17);
 				 if( !start || !end){
 				     jQuery.ajax ({
 					 url: apiCall,
@@ -264,7 +286,9 @@ function seeessvee(pointype){
 	$(".modal").css("display","none");
     }
 }
-   
+
+
+
 
 drawgraph({name:'CO2',apiref:'room.co2.1'}, 'init');
 

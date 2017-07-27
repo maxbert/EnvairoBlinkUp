@@ -86,6 +86,7 @@ def downloadPoint(sitename,zone,point):
         start = parser.parse(requester['start']).strftime("%Y-%m-%d")
         
         end = parser.parse(requester['end']).strftime("%Y-%m-%d")
+       
     else:
         start = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
         end = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
@@ -97,7 +98,6 @@ def downloadPoint(sitename,zone,point):
     headers = {"Authorization":token}
     r = requests.get(apiCall, headers=headers)
     listo = []
-    print r.json()
     for o in r.json():
         obj = {}
         time = o['date_time']
@@ -112,7 +112,7 @@ def downloadPoint(sitename,zone,point):
             listo.append(obj)
         else:
             
-            if timebutinpy > datetime.datetime.strptime(start,"%Y-%m-%d") and timebutinpy < datetime.datetime.strptime(end,"%Y-%m-%d"):
+            if timebutinpy > datetime.datetime.strptime(start,"%Y-%m-%d") and timebutinpy < (datetime.datetime.strptime(end,"%Y-%m-%d") + datetime.timedelta(hours=4)):
                 obj['date']=time
                 obj['value'] = val
                 listo.append(obj)
@@ -147,6 +147,7 @@ def getPoint(sitename,zone,point):
         start = parser.parse(requester['start']).strftime("%Y-%m-%d")
         
         end = parser.parse(requester['end']).strftime("%Y-%m-%d")
+        
     else:
         start = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
         end = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime( "%Y-%m-%d")
@@ -165,7 +166,7 @@ def getPoint(sitename,zone,point):
         if o['value'] > 0:
             val = o['value']
             
-        if timebutinpy > datetime.datetime.strptime(start,"%Y-%m-%d") and timebutinpy < datetime.datetime.strptime(end,"%Y-%m-%d"):
+        if timebutinpy > datetime.datetime.strptime(start,"%Y-%m-%d") and timebutinpy < (datetime.datetime.strptime(end,"%Y-%m-%d") + datetime.timedelta(hours=4)):
             obj['date']=time
             obj['value'] = val
             listo.append(obj)

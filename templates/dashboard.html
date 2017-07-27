@@ -155,13 +155,13 @@
 		); </script>
 	    </div>
 	    <div class="col-1" style="margin-right:4px; padding:0;">
-	      <button class="btn btn-primary btn-block" style=" margin-top:3px; font-size:10; height:40px; text-align:center; padding:0;" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1));"><center>Go</center></button>
+	      <button class="btn btn-primary btn-block" style=" margin-top:3px; font-size:10; height:40px; text-align:center; padding:0;" onClick="drawgraph(active, 'refresh',$('#datepicker').val(),addDays($('#datepicker2').val(),1.17));"><center>Go</center></button>
 	    </div>
 	  </div>
 	</div>
 	<div class="col-lg-4 col-md-2"></div>
 	<div class="col-2">
-	  <button style="white-space:normal; background-color:#efefef" class="btn" onClick="Plotly.downloadImage($('#plot'), {format: 'png', filename: active.name + '_' + $('#zone').html()});">Download Plot as JPG</button>
+	  <button style="white-space:normal; background-color:#efefef" class="btn" id="downloadpng">Download Plot as JPG</button>
 	</div>
 	<div class="col-2">
 	  <form id="downloadbutton">
