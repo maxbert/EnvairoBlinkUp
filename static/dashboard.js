@@ -226,22 +226,23 @@ var drawgraph = function(pointype,state,start,end){
 			     scrollZoom:true,
 			    } );
 	}
-
-	$('#downloadpng').on('click', function(){
-	    console.log('working?');
-	    Plotly.update( ploto,{},
-			    {margin: { t: 0 }, 
-			     paper_bgcolor:"white",
-			     plot_bgcolor:"white",
-			    } ).then(function(){
-				Plotly.downloadImage(ploto, {
-				    format: 'png',
-				    height: 1080,
-				    width: 1920,
-				    filename: active.name
-				})
-			    })
-	});
+	if(state == 'init'){
+	    $('#downloadpng').on('click', function(){
+		console.log('working?');
+		Plotly.update( ploto,{},
+			       {margin: { t: 0 }, 
+				paper_bgcolor:"white",
+				plot_bgcolor:"white",
+			       } ).then(function(){
+				   Plotly.downloadImage(ploto, {
+				       format: 'png',
+				       height: 1080,
+				       width: 1920,
+				       filename: active.name
+				   })
+			       })
+	    });
+	}
 				    
 				   
 
