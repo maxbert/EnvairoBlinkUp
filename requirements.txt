@@ -3,7 +3,7 @@ Flask-JWT-Extended==3.0.0
 Jinja2==2.9.6
 MarkupSafe==1.0
 PyJWT==1.5.2
-Werkzeug==0.12.2
+Werkzeug==0.15.3
 argparse==1.2.1
 certifi==2017.4.17
 chardet==3.0.4
